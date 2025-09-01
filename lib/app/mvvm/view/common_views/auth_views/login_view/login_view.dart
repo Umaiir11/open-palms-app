@@ -3,7 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:open_palms/app/config/app_assets.dart';
+import 'package:open_palms/app/config/app_enums.dart';
 import 'package:open_palms/app/config/app_strings.dart';
+import 'package:open_palms/app/config/global_variables.dart';
 import 'package:open_palms/app/customWidgets/app_custom_button.dart';
 import 'package:open_palms/app/customWidgets/app_custom_field.dart';
 import 'package:open_palms/app/customWidgets/sizedbox_extension.dart';
@@ -27,19 +29,14 @@ class _LoginViewState extends State<LoginView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.primary,
-      body:
-      Column(
+      body: Column(
         children: [
           /// Header Section
           Padding(
             padding: EdgeInsets.only(top: 50.h, left: 20.w, bottom: 10.h),
             child: GestureDetector(
               onTap: () => Get.back(),
-              child: SvgPicture.asset(
-                AppAssets.whiteBackButton,
-                height: 24.h,
-                width: 24.w,
-              ),
+              child: SvgPicture.asset(AppAssets.whiteBackButton, height: 24.h, width: 24.w),
             ),
           ),
 
@@ -50,26 +47,15 @@ class _LoginViewState extends State<LoginView> {
               children: [
                 Text(
                   "Welcome",
-                  style: AppTextStyles.customText20(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: AppTextStyles.customText20(color: Colors.white, fontWeight: FontWeight.bold),
                 ),
                 4.height,
                 Text(
                   "To OpenPalms",
-                  style: AppTextStyles.customText22(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w600,
-                  ),
+                  style: AppTextStyles.customText22(color: Colors.white, fontWeight: FontWeight.w600),
                 ),
                 6.height,
-                Text(
-                  "Your Help, Their Hope.",
-                  style: AppTextStyles.customText14(
-                    color: Colors.white.withOpacity(0.9),
-                  ),
-                ),
+                Text("Your Help, Their Hope.", style: AppTextStyles.customText14(color: Colors.white.withOpacity(0.9))),
               ],
             ),
           ),
@@ -81,10 +67,7 @@ class _LoginViewState extends State<LoginView> {
               margin: EdgeInsets.symmetric(horizontal: 10.w),
               decoration: BoxDecoration(
                 color: AppColors.white, // white container
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(30.r),
-                  topRight: Radius.circular(30.r),
-                ),
+                borderRadius: BorderRadius.only(topLeft: Radius.circular(30.r), topRight: Radius.circular(30.r)),
               ),
               child: SingleChildScrollView(
                 padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 30.h),
@@ -93,27 +76,17 @@ class _LoginViewState extends State<LoginView> {
                   children: [
                     Text(
                       AppStrings.wantToDonateLabel,
-                      style: AppTextStyles.customText24(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: AppTextStyles.customText24(color: Colors.black, fontWeight: FontWeight.bold),
                     ),
                     6.height,
                     Text(
                       "Make a difference by supporting verified\nrecipients in need",
-                      style: AppTextStyles.customText14(
-                        color: AppColors.textColorBlackLight,
-                        fontWeight: FontWeight.normal,
-                      ),
+                      style: AppTextStyles.customText14(color: AppColors.textColorBlackLight, fontWeight: FontWeight.normal),
                     ),
                     30.height,
 
                     /// Email Field
-                    AppCustomField(
-                      labelTitle: "Email Address",
-                      hintText: "Enter your email",
-                      isRequired: true,
-                    ),
+                    AppCustomField(labelTitle: "Email Address", hintText: "Enter your email", isRequired: true),
                     20.height,
 
                     /// Password Field
@@ -125,11 +98,7 @@ class _LoginViewState extends State<LoginView> {
                         obscureText: authController.isVisible.value,
                         isRequired: true,
                         suffixIcon: IconButton(
-                          icon: Icon(
-                            authController.isVisible.value
-                                ? Icons.visibility_off
-                                : Icons.visibility,
-                          ),
+                          icon: Icon(authController.isVisible.value ? Icons.visibility_off : Icons.visibility),
                           onPressed: authController.togglePassword,
                         ),
                       ),
@@ -140,18 +109,21 @@ class _LoginViewState extends State<LoginView> {
                       alignment: Alignment.centerRight,
                       child: GestureDetector(
                         onTap: () {},
-                        child: Text(
-                          "Forgot Password?",
-                          style: AppTextStyles.customText14(
-                            color: Colors.grey.shade700,
-                          ),
-                        ),
+                        child: Text("Forgot Password?", style: AppTextStyles.customText14(color: Colors.grey.shade700)),
                       ),
                     ),
                     30.height,
 
                     /// Sign In Button
-                    AppCustomButton(title: "Sign In",bgColor: AppColors.secondary, onPressed: () {}),
+                    AppCustomButton(
+                      title: "Sign In",
+                      bgColor: AppColors.secondary,
+                      onPressed: () {
+                        if (GlobalVariables.userType == UserType.donor) {
+                          Get.offAllNamed(AppRoutes.donorBottomBarView);
+                        }
+                      },
+                    ),
                     20.height,
 
                     /// Or Continue With
@@ -162,10 +134,7 @@ class _LoginViewState extends State<LoginView> {
                           padding: EdgeInsets.symmetric(horizontal: 8.w),
                           child: Text(
                             "OR CONTINUE WITH",
-                            style: AppTextStyles.customText16(
-                              color: AppColors.lightColor,
-                              fontWeight: FontWeight.w500,
-                            ),
+                            style: AppTextStyles.customText16(color: AppColors.lightColor, fontWeight: FontWeight.w500),
                           ),
                         ),
                       ],
@@ -173,26 +142,14 @@ class _LoginViewState extends State<LoginView> {
                     20.height,
 
                     /// Social Buttons (Google + Apple)
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        _socialIcon(AppAssets.googleLogo),
-                        20.width,
-                        _socialIcon(AppAssets.appleLogo),
-                      ],
-                    ),
+                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [_socialIcon(AppAssets.googleLogo), 20.width, _socialIcon(AppAssets.appleLogo)]),
                     40.height,
 
                     /// Bottom Sign Up
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          "Don’t have an account?",
-                          style: AppTextStyles.customText14(
-                            color: Colors.grey.shade700,
-                          ),
-                        ),
+                        Text("Don’t have an account?", style: AppTextStyles.customText14(color: Colors.grey.shade700)),
                         5.width,
                         GestureDetector(
                           onTap: () {
@@ -200,10 +157,7 @@ class _LoginViewState extends State<LoginView> {
                           },
                           child: Text(
                             "Sign Up",
-                            style: AppTextStyles.customText14(
-                              color: AppColors.primary,
-                              fontWeight: FontWeight.bold,
-                            ),
+                            style: AppTextStyles.customText14(color: AppColors.primary, fontWeight: FontWeight.bold),
                           ),
                         ),
                       ],
@@ -227,9 +181,7 @@ class _LoginViewState extends State<LoginView> {
         borderRadius: BorderRadius.circular(50.r),
         border: Border.all(color: Colors.grey.shade300),
       ),
-      child: Center(
-        child: SvgPicture.asset(assetPath),
-      ),
+      child: Center(child: SvgPicture.asset(assetPath)),
     );
   }
 }

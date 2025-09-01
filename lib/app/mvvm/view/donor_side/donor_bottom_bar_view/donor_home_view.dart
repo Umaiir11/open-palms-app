@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:open_palms/app/config/app_assets.dart';
 import 'package:open_palms/app/config/app_text_style.dart';
 import 'package:open_palms/app/config/padding_extensions.dart';
 import 'package:open_palms/app/customWidgets/custom_tiles/donor_stats_tile.dart';
 import 'package:open_palms/app/customWidgets/sizedbox_extension.dart';
+import 'package:open_palms/app/mvvm/view_model/donor_side_controllers/donor_home_controller/donor_home_controller.dart';
 
 import '../../../../config/app_colors.dart';
 import '../../../../customWidgets/custom_cache_image/custom_cached_image.dart';
@@ -18,6 +20,8 @@ class DonorHomeView extends StatefulWidget {
 }
 
 class _DonorHomeViewState extends State<DonorHomeView> {
+  final DonorHomeController controller = Get.find();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,6 +81,41 @@ class _DonorHomeViewState extends State<DonorHomeView> {
                   child: Text(
                     'Categories',
                     style: AppTextStyles.customText22(color: AppColors.black, fontWeight: FontWeight.w600),
+                  ),
+                ),
+                10.h.height,
+                SizedBox(
+                  height: 40.h,
+                  child: ListView.separated(
+                    scrollDirection: Axis.horizontal,
+                    physics: BouncingScrollPhysics(),
+                    padding: EdgeInsets.zero,
+                    itemCount: controller.categoryList.length,
+                    separatorBuilder: (_, __) => const SizedBox(width: 10),
+                    itemBuilder: (context, index) {
+                      final category = controller.categoryList[index];
+                      return GestureDetector(
+                        onTap: () => controller.selectCategory(category),
+                        child: Obx(() {
+                          return Container(
+                            decoration: BoxDecoration(
+                              color: controller.selectedCategory.value == category ? AppColors.primary : Color(0xffF6F6F6),
+                              borderRadius: BorderRadius.circular(6.sp),
+                              border: Border.all(color: AppColors.black.withOpacity(0.06)),
+                            ),
+                            child: Center(
+                              child: Text(
+                                category,
+                                style: AppTextStyles.customText16(
+                                  fontWeight: FontWeight.w500,
+                                  color: controller.selectedCategory.value == category ? AppColors.white : AppColors.black,
+                                ),
+                              ),
+                            ).paddingHorizontal(25.w),
+                          );
+                        }),
+                      );
+                    },
                   ),
                 ),
               ],
