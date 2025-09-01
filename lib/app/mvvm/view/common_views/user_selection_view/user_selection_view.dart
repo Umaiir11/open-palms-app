@@ -7,6 +7,7 @@ import 'package:open_palms/app/config/app_colors.dart';
 import 'package:open_palms/app/config/app_routes.dart';
 import 'package:open_palms/app/config/app_strings.dart';
 import 'package:open_palms/app/config/app_text_style.dart';
+import 'package:open_palms/app/config/global_variables.dart';
 import 'package:open_palms/app/customWidgets/sizedbox_extension.dart';
 
 import '../../../../config/app_assets.dart';
@@ -65,6 +66,7 @@ class _UserSelectionViewState extends State<UserSelectionView> {
                   ],
                 ),
                 onPressed: () {
+                  GlobalVariables.userType = UserType.donor;
                   Get.toNamed(AppRoutes.loginView);
                 },
                 isNeedy: false,
@@ -89,7 +91,10 @@ class _UserSelectionViewState extends State<UserSelectionView> {
                 buttonGradient: const LinearGradient(
                   colors: [Colors.white, Colors.white],
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  GlobalVariables.userType = UserType.needy;
+                  Get.toNamed(AppRoutes.loginView);
+                },
                 isNeedy: true,
                 buttonTextColor: Colors.black,
               ),

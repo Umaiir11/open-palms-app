@@ -4,9 +4,9 @@ import 'package:open_palms/app/mvvm/view/common_views/auth_views/sign_up_view/si
 import 'package:open_palms/app/mvvm/view/common_views/get_started_view/get_started_view.dart';
 import 'package:open_palms/app/mvvm/view/common_views/user_selection_view/user_selection_view.dart';
 import 'package:open_palms/app/mvvm/view/donor_side/donor_bottom_bar_view/donor_bottom_bar_view.dart';
-import 'package:open_palms/app/mvvm/view_model/bottom_bar_controller/bottom_bar_controller.dart';
 
 import '../mvvm/view/common_views/splash_view/splash_view.dart';
+import '../mvvm/view_model/common_controllers/bottom_bar_controller/bottom_bar_controller.dart';
 
 /// Defines navigation routes for the LayerX app.
 abstract class AppRoutes {
