@@ -82,10 +82,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               child:
                   leading ??
                   SizedBox(
-                    width: 40.sp, // responsive width
-                    height: 40.sp, // same as width → circle
+                    width: 30.sp, // responsive width
+                    height: 30.sp, // same as width → circle
                     child: CustomBackButton(isWhite: isWhite ?? false),
-                  ).paddingLeft(15.w),
+                  ),
             ),
           ),
       // flexibleSpace: shouldAddBG,

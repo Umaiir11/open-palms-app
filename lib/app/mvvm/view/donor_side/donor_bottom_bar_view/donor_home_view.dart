@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:open_palms/app/config/app_assets.dart';
+import 'package:open_palms/app/config/app_routes.dart';
 import 'package:open_palms/app/config/app_text_style.dart';
 import 'package:open_palms/app/config/padding_extensions.dart';
 import 'package:open_palms/app/customWidgets/custom_tiles/donor_stats_tile.dart';
@@ -128,6 +129,9 @@ class _DonorHomeViewState extends State<DonorHomeView> {
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
                       return RequestCustomTile(
+                        onTap: (){
+                          Get.toNamed(AppRoutes.donorRequestDetailView, arguments: {'status': 'active'});
+                        },
                         title: "Emergency Medical Surgery",
                         image: "https://images.pexels.com/photos/8078574/pexels-photo-8078574.jpeg",
                         collectedAmount: "18750",

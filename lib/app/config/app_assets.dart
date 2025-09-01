@@ -26,6 +26,6 @@ class AppAssets {
   static const String bulletGreen = '$svgsPath/bullet_green.svg';
   static const String googleLogo = '$svgsPath/ic_google.svg';
   static const String appleLogo = '$svgsPath/ic_apple.svg';
-
   static const String searchIcon = '$svgsPath/search_icon.svg';
+  static const String stopWatchIcon = '$svgsPath/stop_watch_icon.svg';
 }
