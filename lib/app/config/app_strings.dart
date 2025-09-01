@@ -646,4 +646,13 @@ abstract class AppStrings {
   static const String urlIsEmpty = "URL is empty";
   static const String couldNotLaunchUrl = "Could not launch";
   static const String errorLaunchingUrl = "Error launching URL:";
+
+
+
+  //open palm app
+  static const String userSelectionHeading = "Welcome to OpenPalms";
+  static const String wantToDonateLabel = "I Want to Donate";
+  static const String needHelpLabel = "I Need Help";
+  static const String donateDescription = "Make a difference by supporting verified recipients in need";
+  static const String needyDescription = "Share your story and receive support from the community";
 }

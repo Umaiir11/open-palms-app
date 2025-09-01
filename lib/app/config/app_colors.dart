@@ -34,6 +34,10 @@ abstract class AppColors {
   static const Color bottomBarGradentCColor = Color(0xFF888A8F);
   static const Color yellowColor = Color(0xFFFDCC01);
   static const Color moreColor = Color(0xFFC4C4C4);
+  static const Color darkGreyColor = Color(0xFF1E1E1E);
+  static const Color borderColorGrey = Color(0xFFD5D5D5);
+  static const Color lightGreenColor = Color(0x402A9E39);
+  static const Color textColorBlackLight = Color(0x991E1E1E);
 
 
 }
