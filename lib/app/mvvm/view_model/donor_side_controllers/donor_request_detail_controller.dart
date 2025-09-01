@@ -11,6 +11,13 @@ class DonorRequestDetailController extends GetxController {
     "https://images.unsplash.com/photo-1551836022-d5d88e9218df",
   ];
 
+  RxString selectedAmount = "".obs;
+  final List<String> amounts = ["25", "50", "100", "250", "500"];
+
+  void selectAmount(val) {
+    selectedAmount.value = val;
+  }
+
   double calculatePercentage(String? totalAmount, String? collectedAmount) {
     if (totalAmount == null || collectedAmount == null) return 0;
 

@@ -62,7 +62,7 @@ class Utils {
       ),
       context: context,
       builder: (context) {
-        return Container(width: ScreenUtil().screenWidth, child: child);
+        return SizedBox(width: ScreenUtil().screenWidth, child: child);
       },
     );
   }

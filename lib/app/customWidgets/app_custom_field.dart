@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:open_palms/app/customWidgets/sizedbox_extension.dart';
 import '../config/app_colors.dart';
 import '../config/app_text_style.dart';
 
@@ -62,7 +63,8 @@ class AppCustomField extends StatelessWidget {
     this.onTap,
     this.labelTitleSize,
     this.cursorColor,
-    this.textSize, // Add onTap to trigger when the field is tapped
+    this.textSize,
+    this.isSecondField = false, // Add onTap to trigger when the field is tapped
   });
 
   final Color? cursorColor;
@@ -121,12 +123,13 @@ class AppCustomField extends StatelessWidget {
   final bool enabled;
   final double? labelTitleSize;
   final VoidCallback? onTap; // New onTap callback for custom action
+  final bool? isSecondField;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
-      children: [
+      children: <Widget>[
         if (labelTitle != null)
           Row(
             children: [
@@ -137,8 +140,8 @@ class AppCustomField extends StatelessWidget {
               if (isRequired) Text(' *', style: AppTextStyles.customText16(color: AppColors.primary)),
             ],
           ),
-        // if (titleWidget != null) titleWidget!,
-        // 4.h.height,
+        if (titleWidget != null) titleWidget!,
+        isSecondField ?? false ? 4.h.height : 0.h.height,
         TextFormField(
           maxLength: maxLength,
           cursorColor: cursorColor ?? AppColors.primary,
@@ -189,12 +192,37 @@ class AppCustomField extends StatelessWidget {
             border: UnderlineInputBorder(borderSide: BorderSide(color: enabledBorderColor ?? AppColors.textLightBlack.withOpacity(0.4))),
             prefixIconColor: prefixIconColor,
             suffixIconColor: suffixIconColor,
-            contentPadding: contentPadding ?? EdgeInsets.symmetric(horizontal: 0.w, vertical: 15.h),
-            focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: focusedBorderColor ?? AppColors.primary)),
-            enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: enabledBorderColor ?? AppColors.textLightBlack.withOpacity(0.4))),
-            errorBorder: UnderlineInputBorder(borderSide: BorderSide(color: errorBorderColor ?? AppColors.negativeRed)),
-            disabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: disabledBorderColor ?? AppColors.textLightBlack.withOpacity(0.4))),
-            focusedErrorBorder: UnderlineInputBorder(borderSide: BorderSide(color: focusedBorderColor ?? AppColors.primary)),
+            contentPadding: contentPadding ?? EdgeInsets.symmetric(horizontal: isSecondField ?? false ? 15.w : 0.w, vertical: 15.h),
+            focusedBorder: isSecondField == true
+                ? OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.sp),
+                    borderSide: BorderSide(color: AppColors.primary),
+                  )
+                : UnderlineInputBorder(borderSide: BorderSide(color: focusedBorderColor ?? AppColors.primary)),
+            enabledBorder: isSecondField == true
+                ? OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.sp),
+                    borderSide: BorderSide(color: AppColors.black.withOpacity(0.09)),
+                  )
+                : UnderlineInputBorder(borderSide: BorderSide(color: enabledBorderColor ?? AppColors.textLightBlack.withOpacity(0.4))),
+            errorBorder: isSecondField == true
+                ? OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.sp),
+                    borderSide: BorderSide(color: AppColors.negativeRed),
+                  )
+                : UnderlineInputBorder(borderSide: BorderSide(color: errorBorderColor ?? AppColors.negativeRed)),
+            disabledBorder: isSecondField == true
+                ? OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.sp),
+                    borderSide: BorderSide(color: AppColors.black.withOpacity(0.09)),
+                  )
+                : UnderlineInputBorder(borderSide: BorderSide(color: disabledBorderColor ?? AppColors.textLightBlack.withOpacity(0.4))),
+            focusedErrorBorder: isSecondField == true
+                ? OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.sp),
+                    borderSide: BorderSide(color: AppColors.primary),
+                  )
+                : UnderlineInputBorder(borderSide: BorderSide(color: focusedBorderColor ?? AppColors.primary)),
             errorMaxLines: 2,
             errorStyle: TextStyle(color: Colors.red, fontSize: 12.sp),
           ),

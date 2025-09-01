@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:open_palms/app/config/padding_extensions.dart';
 import 'package:open_palms/app/customWidgets/app_custom_button.dart';
 import 'package:open_palms/app/customWidgets/custom_app_bar.dart';
+import 'package:open_palms/app/customWidgets/custom_bottom_sheets/make_donation_sheet.dart';
 import 'package:open_palms/app/customWidgets/custom_cache_image/custom_cached_image.dart';
 import 'package:open_palms/app/customWidgets/sizedbox_extension.dart';
 import 'package:open_palms/app/mvvm/view_model/donor_side_controllers/donor_request_detail_controller.dart';
@@ -208,7 +209,14 @@ class _DonorRequestDetailViewState extends State<DonorRequestDetailView> {
                 ),
               ),
               20.h.height,
-              status == 'active' ? AppCustomButton(title: 'Donate Now', onPressed: () {}).paddingHorizontal(50.w) : SizedBox.shrink(),
+              status == 'active'
+                  ? AppCustomButton(
+                      title: 'Donate Now',
+                      onPressed: () {
+                        Utils.showBottomSheet(context: context, child: MakeDonationSheet());
+                      },
+                    ).paddingHorizontal(50.w)
+                  : SizedBox.shrink(),
             ],
           ),
         ).paddingHorizontal(15.w),
