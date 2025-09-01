@@ -74,7 +74,7 @@ class DonorStatsTile extends StatelessWidget {
                     ),
                   ],
                 ),
-                15.h.height,
+                10.h.height,
                 SliderTheme(
                   data: SliderTheme.of(context).copyWith(
                     activeTrackColor: AppColors.primary,
