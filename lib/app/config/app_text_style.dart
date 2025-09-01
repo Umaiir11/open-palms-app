@@ -17,7 +17,7 @@ abstract class AppTextStyles {
     double? height,
     String? fontFamily, // added
   }) {
-    return GoogleFonts.poppins(fontSize: fontSize, fontWeight: fontWeight, color: color, letterSpacing: letterSpacing, height: height);
+    return GoogleFonts.roboto(fontSize: fontSize, fontWeight: fontWeight, color: color, letterSpacing: letterSpacing, height: height);
   }
 
   static textStyleTextBotton({bool? isUnderline = true, String? fontFamily}) {
@@ -37,7 +37,7 @@ abstract class AppTextStyles {
     double? height,
     String? fontFamily, // added
   }) {
-    return GoogleFonts.poppins(fontSize: 10, fontWeight: fontWeight, color: color, letterSpacing: letterSpacing, height: height);
+    return GoogleFonts.roboto(fontSize: 10, fontWeight: fontWeight, color: color, letterSpacing: letterSpacing, height: height);
   }
 
   static TextStyle customText12({
@@ -47,7 +47,7 @@ abstract class AppTextStyles {
     double? height,
     String? fontFamily, // added
   }) {
-    return GoogleFonts.poppins(fontSize: 12, fontWeight: fontWeight, color: color, letterSpacing: letterSpacing, height: height);
+    return GoogleFonts.roboto(fontSize: 12, fontWeight: fontWeight, color: color, letterSpacing: letterSpacing, height: height);
   }
 
   static TextStyle customText14({
@@ -59,21 +59,23 @@ abstract class AppTextStyles {
     Color? decorationColor,
     String? fontFamily, // added
   }) {
-    return GoogleFonts.poppins(height: height, fontSize: 14, fontWeight: fontWeight, color: color, letterSpacing: letterSpacing, decoration: decoration);
+    return GoogleFonts.roboto(height: height, fontSize: 14, fontWeight: fontWeight, color: color, letterSpacing: letterSpacing, decoration: decoration);
   }
 
   static TextStyle customText16({
     Color? color,
     FontWeight fontWeight = FontWeight.normal,
     double letterSpacing = 0,
+    double? height,
     TextDecoration decoration = TextDecoration.none,
     Color? decorationColor,
     String? fontFamily, // added
   }) {
-    return GoogleFonts.poppins(
+    return GoogleFonts.roboto(
       fontSize: 16,
       fontWeight: fontWeight,
       color: color,
+      height: height,
       letterSpacing: letterSpacing,
       decoration: decoration,
       decorationColor: decorationColor,
@@ -89,7 +91,7 @@ abstract class AppTextStyles {
     double? height,
     String? fontFamily, // added
   }) {
-    return GoogleFonts.poppins(
+    return GoogleFonts.roboto(
       fontSize: 32,
       fontWeight: fontWeight,
       color: color,
@@ -109,7 +111,7 @@ abstract class AppTextStyles {
     double? height,
     String? fontFamily, // added
   }) {
-    return GoogleFonts.poppins(
+    return GoogleFonts.roboto(
       fontSize: 40,
       fontWeight: fontWeight,
       color: color,
@@ -127,7 +129,7 @@ abstract class AppTextStyles {
     double letterSpacing = 0,
     String? fontFamily, // added
   }) {
-    return GoogleFonts.poppins(height: height, fontSize: 18, fontWeight: fontWeight, color: color, letterSpacing: letterSpacing);
+    return GoogleFonts.roboto(height: height, fontSize: 18, fontWeight: fontWeight, color: color, letterSpacing: letterSpacing);
   }
 
   static TextStyle customText20({
@@ -138,7 +140,7 @@ abstract class AppTextStyles {
     double letterSpacing = 0,
     String? fontFamily, // added
   }) {
-    return GoogleFonts.poppins(height: height, fontSize: 18, fontWeight: fontWeight, color: color, letterSpacing: letterSpacing, shadows: shadow);
+    return GoogleFonts.roboto(height: height, fontSize: 18, fontWeight: fontWeight, color: color, letterSpacing: letterSpacing, shadows: shadow);
   }
 
   static TextStyle customText22({
@@ -149,7 +151,7 @@ abstract class AppTextStyles {
     double? height,
     String? fontFamily, // added
   }) {
-    return GoogleFonts.poppins(fontSize: 22, fontWeight: fontWeight, color: color, letterSpacing: letterSpacing, height: height, shadows: shadow);
+    return GoogleFonts.roboto(fontSize: 22, fontWeight: fontWeight, color: color, letterSpacing: letterSpacing, height: height, shadows: shadow);
   }
 
   static TextStyle customText24({
@@ -159,7 +161,7 @@ abstract class AppTextStyles {
     double letterSpacing = 0,
     String? fontFamily, // added
   }) {
-    return GoogleFonts.poppins(fontSize: 24, fontWeight: fontWeight, color: color, letterSpacing: letterSpacing, shadows: shadow);
+    return GoogleFonts.roboto(fontSize: 24, fontWeight: fontWeight, color: color, letterSpacing: letterSpacing, shadows: shadow);
   }
 
   static TextStyle customText26({
@@ -170,7 +172,7 @@ abstract class AppTextStyles {
     double letterSpacing = 0,
     String? fontFamily, // added
   }) {
-    return GoogleFonts.poppins(fontSize: 26, fontWeight: fontWeight, color: color, letterSpacing: letterSpacing, shadows: shadow, height: height);
+    return GoogleFonts.roboto(fontSize: 26, fontWeight: fontWeight, color: color, letterSpacing: letterSpacing, shadows: shadow, height: height);
   }
 
   static TextStyle customText28({
@@ -180,6 +182,6 @@ abstract class AppTextStyles {
     double letterSpacing = 0,
     String? fontFamily, // added
   }) {
-    return GoogleFonts.poppins(fontSize: 28, fontWeight: fontWeight, color: color, letterSpacing: letterSpacing, shadows: shadow);
+    return GoogleFonts.roboto(fontSize: 28, fontWeight: fontWeight, color: color, letterSpacing: letterSpacing, shadows: shadow);
   }
 }

@@ -44,7 +44,7 @@ class AppCustomButton extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           backgroundColor: bgColor ?? AppColors.primary,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(borderRadius ?? 30.sp),
+            borderRadius: BorderRadius.circular(borderRadius ?? 7.sp),
             side: BorderSide(color: borderColor ?? AppColors.transparent),
           ),
           elevation: 0, // flat look
@@ -59,7 +59,7 @@ class AppCustomButton extends StatelessWidget {
             Text(
               title,
               key: textKey,
-              style: textStyle ?? AppTextStyles.customText16(color: AppColors.black, fontWeight: FontWeight.w500),
+              style: textStyle ?? AppTextStyles.customText16(color: AppColors.white, fontWeight: FontWeight.w500),
             ),
           ],
         ),

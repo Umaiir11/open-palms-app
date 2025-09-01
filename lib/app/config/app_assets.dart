@@ -9,6 +9,7 @@ class AppAssets {
 
   // Images Path
   static const String splashLogo = '$imagesPath/splash-logo.png';
+  static const String getStartedBg = '$imagesPath/get_started_bg.png';
 
 
   // Svgs Path
