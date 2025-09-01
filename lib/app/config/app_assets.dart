@@ -20,5 +20,7 @@ class AppAssets {
   static const String openPalmsLogo = '$svgsPath/open_palms_logo.svg';
   static const String bulletGrey = '$svgsPath/bullet_grey.svg';
   static const String bulletGreen = '$svgsPath/bullet_green.svg';
+  static const String googleLogo = '$svgsPath/ic_google.svg';
+  static const String appleLogo = '$svgsPath/ic_apple.svg';
 
 }

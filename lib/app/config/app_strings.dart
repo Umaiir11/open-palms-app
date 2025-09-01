@@ -655,4 +655,5 @@ abstract class AppStrings {
   static const String needHelpLabel = "I Need Help";
   static const String donateDescription = "Make a difference by supporting verified recipients in need";
   static const String needyDescription = "Share your story and receive support from the community";
+  static const String emailLabel = "Email Address";
 }

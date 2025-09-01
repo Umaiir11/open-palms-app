@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:open_palms/app/config/app_colors.dart';
+import 'package:open_palms/app/config/app_routes.dart';
 import 'package:open_palms/app/config/app_strings.dart';
 import 'package:open_palms/app/config/app_text_style.dart';
 import 'package:open_palms/app/customWidgets/sizedbox_extension.dart';
@@ -36,11 +37,11 @@ class _UserSelectionViewState extends State<UserSelectionView> {
               20.h.height,
 
               Text(
-                  AppStrings.userSelectionHeading,
-                  style: AppTextStyles.customText24(
-                    color: AppColors.darkGreyColor,
-                    fontWeight: FontWeight.bold,
-                  )
+                AppStrings.userSelectionHeading,
+                style: AppTextStyles.customText24(
+                  color: AppColors.darkGreyColor,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
 
               20.h.height,
@@ -49,8 +50,7 @@ class _UserSelectionViewState extends State<UserSelectionView> {
               _buildGlassCard(
                 icon: AppAssets.heartIcon,
                 title: AppStrings.wantToDonateLabel,
-                description:
-                AppStrings.donateDescription,
+                description: AppStrings.donateDescription,
                 features: [
                   "Anonymous donations for privacy",
                   "Support verified recipients",
@@ -59,11 +59,17 @@ class _UserSelectionViewState extends State<UserSelectionView> {
                 ],
                 buttonText: AppStrings.wantToDonateLabel,
                 buttonGradient: const LinearGradient(
-                  colors: [AppColors.lightGreenColor, AppColors.lightGreenColor],
+                  colors: [
+                    AppColors.lightGreenColor,
+                    AppColors.lightGreenColor,
+                  ],
                 ),
+                onPressed: () {
+                  Get.toNamed(AppRoutes.loginView);
+                },
                 isNeedy: false,
                 buttonTextColor: Colors.black,
-                borderColor: AppColors.positiveGreen
+                borderColor: AppColors.positiveGreen,
               ),
 
               20.verticalSpace,
@@ -72,8 +78,7 @@ class _UserSelectionViewState extends State<UserSelectionView> {
               _buildGlassCard(
                 icon: AppAssets.needyIcon,
                 title: AppStrings.needHelpLabel,
-                description:
-                AppStrings.needyDescription,
+                description: AppStrings.needyDescription,
                 features: [
                   "Create verified funding requests",
                   "Secure identity verification",
@@ -84,6 +89,7 @@ class _UserSelectionViewState extends State<UserSelectionView> {
                 buttonGradient: const LinearGradient(
                   colors: [Colors.white, Colors.white],
                 ),
+                onPressed: () {},
                 isNeedy: true,
                 buttonTextColor: Colors.black,
               ),
@@ -101,6 +107,7 @@ class _UserSelectionViewState extends State<UserSelectionView> {
     required List<String> features,
     required String buttonText,
     required Gradient buttonGradient,
+    required VoidCallback onPressed,
     bool isNeedy = false,
     Color buttonTextColor = Colors.black,
     Color borderColor = AppColors.borderColorGrey,
@@ -135,19 +142,19 @@ class _UserSelectionViewState extends State<UserSelectionView> {
               Text(
                 title,
                 style: AppTextStyles.customText24(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
 
               4.verticalSpace,
 
               Text(
-                  description,
-                  style: AppTextStyles.customText14(
-                      color: AppColors.textColorBlackLight,
-                      fontWeight: FontWeight.normal
-                  )
+                description,
+                style: AppTextStyles.customText14(
+                  color: AppColors.textColorBlackLight,
+                  fontWeight: FontWeight.normal,
+                ),
               ),
 
               12.verticalSpace,
@@ -157,23 +164,24 @@ class _UserSelectionViewState extends State<UserSelectionView> {
                 children: features
                     .map(
                       (e) => Row(
-                    children: [
-                      isNeedy ? SvgPicture.asset(AppAssets.bulletGrey) :
-                      SvgPicture.asset(AppAssets.bulletGreen),
-                      6.horizontalSpace,
-                      Expanded(
-                        child: Text(
-                          e,
-                          style: TextStyle(
-                            fontSize: 13.sp,
-                            color: Colors.black,
-                            fontWeight: FontWeight.w400,
+                        children: [
+                          isNeedy
+                              ? SvgPicture.asset(AppAssets.bulletGrey)
+                              : SvgPicture.asset(AppAssets.bulletGreen),
+                          6.horizontalSpace,
+                          Expanded(
+                            child: Text(
+                              e,
+                              style: TextStyle(
+                                fontSize: 13.sp,
+                                color: Colors.black,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
                           ),
-                        ),
+                        ],
                       ),
-                    ],
-                  ),
-                )
+                    )
                     .toList(),
               ),
 
@@ -190,9 +198,12 @@ class _UserSelectionViewState extends State<UserSelectionView> {
                     border: Border.all(color: borderColor),
                   ),
                   child: TextButton(
-                    onPressed: () {},
+                    onPressed: onPressed,
                     style: TextButton.styleFrom(
-                      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 20.w,
+                        vertical: 16.h,
+                      ),
                       minimumSize: Size.zero,
                       tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     ),
@@ -206,7 +217,6 @@ class _UserSelectionViewState extends State<UserSelectionView> {
                   ),
                 ),
               ),
-
             ],
           ),
         ),

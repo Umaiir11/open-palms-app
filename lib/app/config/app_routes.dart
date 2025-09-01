@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:open_palms/app/mvvm/view/common_views/auth_views/login_view/login_view.dart';
+import 'package:open_palms/app/mvvm/view/common_views/auth_views/sign_up_view/sign_up_view.dart';
 import 'package:open_palms/app/mvvm/view/common_views/get_started_view/get_started_view.dart';
 import 'package:open_palms/app/mvvm/view/common_views/user_selection_view/user_selection_view.dart';
 import 'package:open_palms/app/mvvm/view/donor_side/donor_bottom_bar_view/donor_bottom_bar_view.dart';
@@ -14,6 +16,8 @@ abstract class AppRoutes {
   static const getStartedView = '/getStartedView';
   static const userSelectionView = '/userSelectionView';
   static const donorBottomBarView = '/donorBottomBarView';
+  static const loginView = '/loginView';
+  static const signUpView = '/signUpView';
 }
 
 abstract class AppPages {
@@ -37,6 +41,20 @@ abstract class AppPages {
     GetPage(
       name: AppRoutes.userSelectionView,
       page: () => UserSelectionView(),
+      binding: BindingsBuilder(() {
+        // Get.lazyPut<SplashController>(() => SplashController());
+      }),
+    ),
+    GetPage(
+      name: AppRoutes.loginView,
+      page: () => LoginView(),
+      binding: BindingsBuilder(() {
+        // Get.lazyPut<SplashController>(() => SplashController());
+      }),
+    ),
+    GetPage(
+      name: AppRoutes.signUpView,
+      page: () => SignUpView(),
       binding: BindingsBuilder(() {
         // Get.lazyPut<SplashController>(() => SplashController());
       }),
