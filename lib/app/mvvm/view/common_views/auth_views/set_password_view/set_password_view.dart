@@ -1,0 +1,152 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:open_palms/app/config/app_assets.dart';
+import 'package:open_palms/app/config/app_strings.dart';
+import 'package:open_palms/app/customWidgets/app_custom_button.dart';
+import 'package:open_palms/app/customWidgets/app_custom_field.dart';
+import 'package:open_palms/app/customWidgets/sizedbox_extension.dart';
+
+import '../../../../../config/app_colors.dart';
+import '../../../../../config/app_routes.dart';
+import '../../../../../config/app_text_style.dart';
+import '../../../../view_model/common_controllers/auth_controllers/set_password_controller.dart';
+
+class SetPasswordView extends StatefulWidget {
+  const SetPasswordView({super.key});
+
+  @override
+  State<SetPasswordView> createState() => _SetPasswordViewState();
+}
+
+class _SetPasswordViewState extends State<SetPasswordView> {
+  final authController = Get.put(SetPasswordController());
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: AppColors.primary,
+      body: Column(
+        children: [
+          Align(
+            alignment: Alignment.topLeft,
+            child: Padding(
+              padding: EdgeInsets.only(top: 50.h, left: 20.w, bottom: 10.h),
+              child: GestureDetector(
+                onTap: () => Get.back(),
+                child: SvgPicture.asset(AppAssets.whiteBackButton),
+              ),
+            ),
+          ),
+          Center(
+            child: Text(
+              'Set Password',
+              style: AppTextStyles.customText28(
+                color: Colors.white,
+                fontWeight: FontWeight.w700,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+
+          14.h.height,
+
+          Expanded(
+            child: Container(
+              width: double.infinity,
+              margin: EdgeInsets.symmetric(horizontal: 10.w),
+              decoration: BoxDecoration(
+                color: AppColors.white,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(14.r),
+                  topRight: Radius.circular(14.r),
+                ),
+              ),
+              child: SingleChildScrollView(
+                physics: BouncingScrollPhysics(),
+                padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 30.h),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Set Password",
+                      style: AppTextStyles.customText24(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    6.height,
+                    Text(
+                      "Please set your password",
+                      style: AppTextStyles.customText14(
+                        color: AppColors.textColorBlackLight,
+                        fontWeight: FontWeight.normal,
+                        height: 1,
+                      ),
+                    ),
+                    40.h.height,
+
+                    Obx(
+                      () => AppCustomField(
+                        labelTitle: 'Password',
+                        hintText: 'Enter your password',
+                        controller: authController.passwordController,
+                        obscureText: authController.isVisible.value,
+                        isRequired: false,
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            authController.isVisible.value
+                                ? Icons.visibility_off
+                                : Icons.visibility,
+                          ),
+                          color: AppColors.toggleColor,
+                          onPressed: authController.togglePassword,
+                        ),
+                      ),
+                    ),
+                    20.h.height,
+
+                    /* --- Confirm Password --- */
+                    Obx(
+                      () => AppCustomField(
+                        labelTitle: 'Confirm Password',
+                        hintText: 'Re-enter your password',
+                        controller: authController.confirmPasswordController,
+                        obscureText:
+                            authController.isConfirmPasswordVisible.value,
+                        isRequired: false,
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            authController.isConfirmPasswordVisible.value
+                                ? Icons.visibility_off
+                                : Icons.visibility,
+                          ),
+                          color: AppColors.toggleColor,
+                          onPressed: authController.toggleConfirmPassword,
+                        ),
+                      ),
+                    ),
+
+                    20.h.height,
+
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 40.w),
+                      child: AppCustomButton(
+                        title: "Save",
+                        bgColor: AppColors.secondary,
+                        onPressed: () {
+                          Get.toNamed(AppRoutes.loginView);
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
