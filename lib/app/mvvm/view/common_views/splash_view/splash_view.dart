@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:open_palms/app/config/app_assets.dart';
+import 'package:open_palms/app/config/padding_extensions.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
@@ -14,14 +17,31 @@ class _SplashViewState extends State<SplashView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Center(
-        child: Image.asset(AppAssets.splashLogo, height: 150)
-            // 🎬 Animate the logo
-            .animate()
-            .fadeIn(duration: 1200.ms, curve: Curves.easeInOut)
-            .scale(begin: const Offset(0.7, 0.7), end: const Offset(1.0, 1.0), duration: 1000.ms, curve: Curves.easeOutBack)
-            .then(delay: 500.ms) // after first animation
-            .shake(duration: 700.ms, hz: 2, curve: Curves.easeInOut),
+      body: Stack(
+        alignment: Alignment.center,
+        children: [
+          // 🌟 Main Logo Animation
+          Center(
+            child: Image.asset(AppAssets.splashLogo, height: 300.h)
+                .animate()
+                .fadeIn(duration: 1000.ms, curve: Curves.easeInOut)
+                .scale(begin: const Offset(0.6, 0.6), end: const Offset(1.0, 1.0), duration: 900.ms, curve: Curves.easeOutBack)
+                .then(delay: 400.ms)
+                .shake(duration: 800.ms, hz: 2, curve: Curves.easeInOut),
+          ),
+
+          // 🌟 Bottom SVG Logo Animation
+          SvgPicture.asset(AppAssets.openPalmsLogo, height: 70.h)
+              .paddingBottom(110.h)
+              .animate()
+              .fadeIn(duration: 1200.ms, delay: 800.ms, curve: Curves.easeIn)
+              .slide(
+                begin: const Offset(0, 0.5), // slide up from bottom
+                end: Offset.zero,
+                duration: 800.ms,
+                curve: Curves.easeOut,
+              ),
+        ],
       ),
     );
   }
