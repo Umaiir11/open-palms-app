@@ -1,5 +1,8 @@
 import 'package:get/get.dart';
+import 'package:open_palms/app/mvvm/view/common_views/auth_views/forgot_password_view/forgot_password_view.dart';
 import 'package:open_palms/app/mvvm/view/common_views/auth_views/login_view/login_view.dart';
+import 'package:open_palms/app/mvvm/view/common_views/auth_views/otp_verification_view/otp_verification_view.dart';
+import 'package:open_palms/app/mvvm/view/common_views/auth_views/set_password_view/set_password_view.dart';
 import 'package:open_palms/app/mvvm/view/common_views/auth_views/sign_up_view/sign_up_view.dart';
 import 'package:open_palms/app/mvvm/view/common_views/get_started_view/get_started_view.dart';
 import 'package:open_palms/app/mvvm/view/common_views/user_selection_view/user_selection_view.dart';
@@ -18,6 +21,9 @@ abstract class AppRoutes {
   static const donorBottomBarView = '/donorBottomBarView';
   static const loginView = '/loginView';
   static const signUpView = '/signUpView';
+  static const forgotPasswordView = '/forgotPasswordView';
+  static const otpVerificationView = '/otpVerificationView';
+  static const setPasswordView = '/setPasswordView';
 }
 
 abstract class AppPages {
@@ -55,6 +61,27 @@ abstract class AppPages {
     GetPage(
       name: AppRoutes.signUpView,
       page: () => SignUpView(),
+      binding: BindingsBuilder(() {
+        // Get.lazyPut<SplashController>(() => SplashController());
+      }),
+    ),
+    GetPage(
+      name: AppRoutes.forgotPasswordView,
+      page: () => ForgotPasswordView(),
+      binding: BindingsBuilder(() {
+        // Get.lazyPut<SplashController>(() => SplashController());
+      }),
+    ),
+    GetPage(
+      name: AppRoutes.otpVerificationView,
+      page: () => OtpVerificationView(),
+      binding: BindingsBuilder(() {
+        // Get.lazyPut<SplashController>(() => SplashController());
+      }),
+    ),
+    GetPage(
+      name: AppRoutes.setPasswordView,
+      page: () => SetPasswordView(),
       binding: BindingsBuilder(() {
         // Get.lazyPut<SplashController>(() => SplashController());
       }),
