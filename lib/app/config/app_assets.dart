@@ -10,11 +10,12 @@ class AppAssets {
   // Images Path
   static const String splashLogo = '$imagesPath/splash-logo.png';
   static const String getStartedBg = '$imagesPath/get_started_bg.png';
-
+  static const String donateIcon = '$imagesPath/donate_icon.png';
+  static const String profileIcon = '$imagesPath/profile_icon.png';
+  static const String historyIcon = '$imagesPath/history_icon.png';
 
   // Svgs Path
   static const String whiteBackButton = '$svgsPath/white_back_button.svg';
   static const String blackBackButton = '$svgsPath/black_back_button.svg';
   static const String openPalmsLogo = '$svgsPath/open_palms_logo.svg';
-
 }
