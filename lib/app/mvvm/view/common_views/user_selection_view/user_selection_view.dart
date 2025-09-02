@@ -11,6 +11,7 @@ import 'package:open_palms/app/config/global_variables.dart';
 import 'package:open_palms/app/customWidgets/sizedbox_extension.dart';
 
 import '../../../../config/app_assets.dart';
+import '../../../../customWidgets/app_custom_button.dart';
 
 class UserSelectionView extends StatefulWidget {
   const UserSelectionView({super.key});
@@ -33,73 +34,68 @@ class _UserSelectionViewState extends State<UserSelectionView> {
           ),
         ),
         child: SafeArea(
-          child: Column(
-            children: [
-              20.h.height,
+          child: SingleChildScrollView(
+            physics: BouncingScrollPhysics(),
+            child: Column(
+              children: [
+                20.h.height,
 
-              Text(
-                AppStrings.userSelectionHeading,
-                style: AppTextStyles.customText24(
-                  color: AppColors.darkGreyColor,
-                  fontWeight: FontWeight.bold,
+                Text(
+                  AppStrings.userSelectionHeading,
+                  style: AppTextStyles.customText24(
+                    color: AppColors.darkGreyColor,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
 
-              20.h.height,
+                20.h.height,
 
-              // Donate Card
-              _buildGlassCard(
-                icon: AppAssets.heartIcon,
-                title: AppStrings.wantToDonateLabel,
-                description: AppStrings.donateDescription,
-                features: [
-                  "Anonymous donations for privacy",
-                  "Support verified recipients",
-                  "Track your impact and history",
-                  "Secure payment processing",
-                ],
-                buttonText: AppStrings.wantToDonateLabel,
-                buttonGradient: const LinearGradient(
-                  colors: [
-                    AppColors.lightGreenColor,
-                    AppColors.lightGreenColor,
+                _buildGlassCard(
+                  icon: AppAssets.heartIcon,
+                  title: AppStrings.wantToDonateLabel,
+                  description: AppStrings.donateDescription,
+                  features: [
+                    "Anonymous donations for privacy",
+                    "Support verified recipients",
+                    "Track your impact and history",
+                    "Secure payment processing",
                   ],
+                  buttonText: AppStrings.wantToDonateLabel,
+                  onPressed: () {
+                    GlobalVariables.userType = UserType.donor;
+                    Get.toNamed(AppRoutes.loginView);
+                  },
+                  isNeedy: false,
+                  isSelected: true,
+                  selectedBorderColor: AppColors.positiveGreen,
+                  selectedButtonColor: AppColors.lightGreenColor,
                 ),
-                onPressed: () {
-                  GlobalVariables.userType = UserType.donor;
-                  Get.toNamed(AppRoutes.loginView);
-                },
-                isNeedy: false,
-                buttonTextColor: Colors.black,
-                borderColor: AppColors.positiveGreen,
-              ),
 
-              20.verticalSpace,
+                20.verticalSpace,
 
-              // Need Help Card
-              _buildGlassCard(
-                icon: AppAssets.needyIcon,
-                title: AppStrings.needHelpLabel,
-                description: AppStrings.needyDescription,
-                features: [
-                  "Create verified funding requests",
-                  "Secure identity verification",
-                  "Direct payouts to your account",
-                  "Track your progress",
-                ],
-                buttonText: AppStrings.needHelpLabel,
-                buttonGradient: const LinearGradient(
-                  colors: [Colors.white, Colors.white],
+                _buildGlassCard(
+                  icon: AppAssets.needyIcon,
+                  title: AppStrings.needHelpLabel,
+                  description: AppStrings.needyDescription,
+                  features: [
+                    "Create verified funding requests",
+                    "Secure identity verification",
+                    "Direct payouts to your account",
+                    "Track your progress",
+                  ],
+                  buttonText: AppStrings.needHelpLabel,
+                  onPressed: () {
+                    GlobalVariables.userType = UserType.needy;
+                    Get.toNamed(AppRoutes.loginView);
+                  },
+                  isNeedy: true,
+                  isSelected: false,
+                  selectedBorderColor: AppColors.positiveGreen,
+                  selectedButtonColor: AppColors.lightGreenColor,
                 ),
-                onPressed: () {
-                  GlobalVariables.userType = UserType.needy;
-                  Get.toNamed(AppRoutes.loginView);
-                },
-                isNeedy: true,
-                buttonTextColor: Colors.black,
-              ),
-            ],
-          ).paddingSymmetric(horizontal: 16.w, vertical: 10.h),
+              ],
+            ).paddingSymmetric(horizontal: 16.w, vertical: 10.h),
+          ),
         ),
       ),
     );
@@ -111,12 +107,20 @@ class _UserSelectionViewState extends State<UserSelectionView> {
     required String description,
     required List<String> features,
     required String buttonText,
-    required Gradient buttonGradient,
     required VoidCallback onPressed,
+    bool isSelected = false,
     bool isNeedy = false,
-    Color buttonTextColor = Colors.black,
-    Color borderColor = AppColors.borderColorGrey,
+    Color selectedBorderColor = AppColors.primary,
+    Color selectedButtonColor = AppColors.primary,
   }) {
+    final Color buttonBgColor = isSelected
+        ? selectedButtonColor
+        : Colors.transparent;
+
+    final Color buttonBorderColor = isSelected
+        ? selectedBorderColor
+        : AppColors.borderColorGrey;
+
     return ClipRRect(
       borderRadius: BorderRadius.circular(16.r),
       child: BackdropFilter(
@@ -139,10 +143,9 @@ class _UserSelectionViewState extends State<UserSelectionView> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              /// Icon
               Image.asset(icon, width: 60.w, height: 60.h),
 
-              12.verticalSpace,
+              12.h.height,
 
               Text(
                 title,
@@ -152,7 +155,7 @@ class _UserSelectionViewState extends State<UserSelectionView> {
                 ),
               ),
 
-              4.verticalSpace,
+              4.h.height,
 
               Text(
                 description,
@@ -162,7 +165,7 @@ class _UserSelectionViewState extends State<UserSelectionView> {
                 ),
               ),
 
-              12.verticalSpace,
+              12.h.height,
 
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -177,9 +180,9 @@ class _UserSelectionViewState extends State<UserSelectionView> {
                           Expanded(
                             child: Text(
                               e,
-                              style: TextStyle(
-                                fontSize: 13.sp,
+                              style: AppTextStyles.customText14(
                                 color: Colors.black,
+                                height: 1.8,
                                 fontWeight: FontWeight.w400,
                               ),
                             ),
@@ -190,37 +193,19 @@ class _UserSelectionViewState extends State<UserSelectionView> {
                     .toList(),
               ),
 
-              16.verticalSpace,
-
-              /// Button
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 24.w),
-                  decoration: BoxDecoration(
-                    gradient: buttonGradient,
-                    borderRadius: BorderRadius.circular(8.r),
-                    border: Border.all(color: borderColor),
-                  ),
-                  child: TextButton(
-                    onPressed: onPressed,
-                    style: TextButton.styleFrom(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 20.w,
-                        vertical: 16.h,
-                      ),
-                      minimumSize: Size.zero,
-                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    ),
-                    child: Text(
-                      buttonText,
-                      style: AppTextStyles.customText14(
-                        color: buttonTextColor,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ),
+              16.h.height,
+              AppCustomButton(
+                title: buttonText,
+                onPressed: onPressed,
+                bgColor: buttonBgColor,
+                borderColor: buttonBorderColor,
+                textStyle: AppTextStyles.customText14(
+                  color: AppColors.black,
+                  fontWeight: FontWeight.w500,
                 ),
+                width: 190.w,
+                height: 50.h,
+                borderRadius: 8.r,
               ),
             ],
           ),
