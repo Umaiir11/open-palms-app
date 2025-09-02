@@ -71,7 +71,7 @@ class _UserSelectionViewState extends State<UserSelectionView> {
                   selectedButtonColor: AppColors.lightGreenColor,
                 ),
 
-                20.verticalSpace,
+                20.h.height,
 
                 _buildGlassCard(
                   icon: AppAssets.needyIcon,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:open_palms/app/config/global_variables.dart';
 import 'package:open_palms/app/customWidgets/sizedbox_extension.dart';
 
 import '../../../../../config/app_assets.dart';
@@ -45,9 +46,9 @@ class _SignUpViewState extends State<SignUpView> {
                 // Title
                 Text(
                   'Sign Up',
-                  style: AppTextStyles.customText28(
+                  style: AppTextStyles.customText24(
                     color: Colors.white,
-                    fontWeight: FontWeight.w700,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
                 4.h.height,
@@ -142,7 +143,8 @@ class _SignUpViewState extends State<SignUpView> {
                         labelTitle: 'Confirm Password',
                         hintText: 'Re-enter your password',
                         controller: authController.confirmPasswordController,
-                        obscureText: authController.isConfirmPasswordVisible.value,
+                        obscureText:
+                            authController.isConfirmPasswordVisible.value,
                         isRequired: false,
                         suffixIcon: IconButton(
                           icon: Icon(
@@ -163,7 +165,14 @@ class _SignUpViewState extends State<SignUpView> {
                       child: AppCustomButton(
                         title: 'Sign Up',
                         bgColor: AppColors.secondary,
-                        onPressed: () {},
+                        onPressed: () {
+                          if (GlobalVariables.userType == UserType.donor) {
+                            Get.offAllNamed(AppRoutes.donorBottomBarView);
+                          } else if (GlobalVariables.userType ==
+                              UserType.needy) {
+                            Get.toNamed(AppRoutes.identityVerificationView);
+                          } else {}
+                        },
                       ),
                     ),
                     30.h.height,

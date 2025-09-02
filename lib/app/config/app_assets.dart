@@ -22,6 +22,12 @@ class AppAssets {
   static const String privacyIcon = '$imagesPath/ic_privacy.png';
   static const String signOutIcon = '$imagesPath/ic_sign_out.png';
   static const String deleteIcon = '$imagesPath/ic_delete.png';
+  static const String idIcon = '$imagesPath/id_icon.png';
+  static const String passportIcon = '$imagesPath/passport_icon.png';
+  static const String licenseIcon = '$imagesPath/license_icon.png';
+  static const String tickIcon = '$imagesPath/tick_icon.png';
+  static const String placeholderIcon = '$imagesPath/placeholder_icon.png';
+
 
 
 
@@ -43,4 +49,5 @@ class AppAssets {
   static const String subscriptionIcon = '$svgsPath/ic_subscription.svg';
   static const String rightArrow = '$svgsPath/right_arrow.svg';
   static const String checkIcon = '$svgsPath/check_icon.svg';
+  static const String cameraIcon = '$svgsPath/camera_icon.svg';
 }

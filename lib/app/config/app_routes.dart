@@ -11,10 +11,12 @@ import 'package:open_palms/app/mvvm/view/donor_side/about_us_view/about_us_view.
 import 'package:open_palms/app/mvvm/view/donor_side/donor_bottom_bar_view/donor_bottom_bar_view.dart';
 import 'package:open_palms/app/mvvm/view/donor_side/donor_request_detail_view/donor_request_detail_view.dart';
 import 'package:open_palms/app/mvvm/view/donor_side/privacy_policy_view/privacy_policy_view.dart';
+import 'package:open_palms/app/mvvm/view/donor_side/selfie_verification_view/selfie_verification_view.dart';
 import 'package:open_palms/app/mvvm/view_model/donor_side_controllers/donor_home_controller/donor_home_controller.dart';
 import 'package:open_palms/app/mvvm/view_model/donor_side_controllers/donor_request_detail_controller.dart';
 
 import '../mvvm/view/common_views/splash_view/splash_view.dart';
+import '../mvvm/view/donor_side/identity_verification_view/identity_verification_view.dart';
 import '../mvvm/view/donor_side/subscription_view/subscription_view.dart';
 import '../mvvm/view_model/common_controllers/bottom_bar_controller/bottom_bar_controller.dart';
 
@@ -36,6 +38,8 @@ abstract class AppRoutes {
   static const aboutUsView = '/aboutUsView';
   static const privacyPolicyView = '/privacyPolicyView';
   static const subscriptionView = '/subscriptionView';
+  static const identityVerificationView = '/identityVerificationView';
+  static const selfieVerificationView = '/selfieVerificationView';
 }
 
 abstract class AppPages {
@@ -131,6 +135,20 @@ abstract class AppPages {
     GetPage(
       name: AppRoutes.notificationsView,
       page: () => NotificationsView(),
+      binding: BindingsBuilder(() {
+        // Get.lazyPut<DonorRequestDetailController>(() => DonorRequestDetailController());
+      }),
+    ),
+    GetPage(
+      name: AppRoutes.identityVerificationView,
+      page: () => IdentityVerifyView(),
+      binding: BindingsBuilder(() {
+        // Get.lazyPut<DonorRequestDetailController>(() => DonorRequestDetailController());
+      }),
+    ),
+    GetPage(
+      name: AppRoutes.selfieVerificationView,
+      page: () => SelfieVerificationView(),
       binding: BindingsBuilder(() {
         // Get.lazyPut<DonorRequestDetailController>(() => DonorRequestDetailController());
       }),
