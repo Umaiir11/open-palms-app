@@ -40,4 +40,5 @@ class AppAssets {
   static const String messageIcon = '$svgsPath/message_icon.svg';
   static const String dividerIc = '$svgsPath/divider_ic.svg';
   static const String settingTileDivider = '$svgsPath/setting_tile_divider.svg';
+  static const String subscriptionIcon = '$svgsPath/ic_subscription.svg';
 }

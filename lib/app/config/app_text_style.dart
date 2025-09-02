@@ -159,9 +159,10 @@ abstract class AppTextStyles {
     Color? color,
     FontWeight fontWeight = FontWeight.normal,
     double letterSpacing = 0,
+    double? height,
     String? fontFamily, // added
   }) {
-    return GoogleFonts.roboto(fontSize: 24, fontWeight: fontWeight, color: color, letterSpacing: letterSpacing, shadows: shadow);
+    return GoogleFonts.roboto(fontSize: 24, fontWeight: fontWeight, color: color, letterSpacing: letterSpacing, height: height, shadows: shadow);
   }
 
   static TextStyle customText26({

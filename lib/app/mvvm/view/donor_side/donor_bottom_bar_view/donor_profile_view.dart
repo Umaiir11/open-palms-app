@@ -287,6 +287,27 @@ class _DonorProfileViewState extends State<DonorProfileView> {
                     6.h.height,
 
                     _settingsTile(
+                      leading: SvgPicture.asset(
+                        AppAssets.subscriptionIcon,
+                        height: 43.h,
+                        width: 43.w,
+                      ),
+                      title: "Subscription",
+                      trailing: Icon(Icons.arrow_forward_ios, size: 16.sp),
+                      onTap: () {
+                        Get.toNamed(AppRoutes.subscriptionView);
+                      },
+                    ),
+
+                    6.h.height,
+
+                    SvgPicture.asset(
+                      AppAssets.settingTileDivider,
+                    ).paddingHorizontal(4.w),
+
+                    6.h.height,
+
+                    _settingsTile(
                       leading: Image.asset(
                         AppAssets.aboutUsIcon,
                         height: 43.h,

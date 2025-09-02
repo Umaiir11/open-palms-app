@@ -14,6 +14,7 @@ import 'package:open_palms/app/mvvm/view_model/donor_side_controllers/donor_home
 import 'package:open_palms/app/mvvm/view_model/donor_side_controllers/donor_request_detail_controller.dart';
 
 import '../mvvm/view/common_views/splash_view/splash_view.dart';
+import '../mvvm/view/donor_side/subscription_view/subscription_view.dart';
 import '../mvvm/view_model/common_controllers/bottom_bar_controller/bottom_bar_controller.dart';
 
 /// Defines navigation routes for the LayerX app.
@@ -32,6 +33,7 @@ abstract class AppRoutes {
   static const setPasswordView = '/setPasswordView';
   static const aboutUsView = '/aboutUsView';
   static const privacyPolicyView = '/privacyPolicyView';
+  static const subscriptionView = '/subscriptionView';
 }
 
 abstract class AppPages {
@@ -113,6 +115,13 @@ abstract class AppPages {
     GetPage(
       name: AppRoutes.privacyPolicyView,
       page: () => PrivacyPolicyView(),
+      binding: BindingsBuilder(() {
+        // Get.lazyPut<SplashController>(() => SplashController());
+      }),
+    ),
+    GetPage(
+      name: AppRoutes.subscriptionView,
+      page: () => SubscriptionView(),
       binding: BindingsBuilder(() {
         // Get.lazyPut<SplashController>(() => SplashController());
       }),
