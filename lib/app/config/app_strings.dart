@@ -656,4 +656,8 @@ abstract class AppStrings {
   static const String donateDescription = "Make a difference by supporting verified recipients in need";
   static const String needyDescription = "Share your story and receive support from the community";
   static const String emailLabel = "Email Address";
+  static const String accountSettingTitle = "Account & Setting";
+  static const String aboutUsLabel = "About Us";
+  static const String privacyPolicyLabel = "Privacy Policy";
+  static const String loremIpsumText = "dolor sit amet consectetur. Quam bibendum sit nec egestas facilisis molestie nisi sit sed. Lobortis neque neque amet facilisis sapien velit sed id suspendisse. Sed ac porta pellentesque magna. Varius nisl aliquet mauris tempor amet in. dolor sit amet consectetur. Quam bibendum sit nec egestas facilisis molestie nisi sit sed. Lobortis neque neque amet facilisis sapien velit sed id suspendisse. Sed ac porta pellentesque magna. Varius nisl aliquet mauris tempor amet in.";
 }

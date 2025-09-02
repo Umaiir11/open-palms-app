@@ -6,8 +6,10 @@ import 'package:open_palms/app/mvvm/view/common_views/auth_views/set_password_vi
 import 'package:open_palms/app/mvvm/view/common_views/auth_views/sign_up_view/sign_up_view.dart';
 import 'package:open_palms/app/mvvm/view/common_views/get_started_view/get_started_view.dart';
 import 'package:open_palms/app/mvvm/view/common_views/user_selection_view/user_selection_view.dart';
+import 'package:open_palms/app/mvvm/view/donor_side/about_us_view/about_us_view.dart';
 import 'package:open_palms/app/mvvm/view/donor_side/donor_bottom_bar_view/donor_bottom_bar_view.dart';
 import 'package:open_palms/app/mvvm/view/donor_side/donor_request_detail_view/donor_request_detail_view.dart';
+import 'package:open_palms/app/mvvm/view/donor_side/privacy_policy_view/privacy_policy_view.dart';
 import 'package:open_palms/app/mvvm/view_model/donor_side_controllers/donor_home_controller/donor_home_controller.dart';
 import 'package:open_palms/app/mvvm/view_model/donor_side_controllers/donor_request_detail_controller.dart';
 
@@ -28,6 +30,8 @@ abstract class AppRoutes {
   static const forgotPasswordView = '/forgotPasswordView';
   static const otpVerificationView = '/otpVerificationView';
   static const setPasswordView = '/setPasswordView';
+  static const aboutUsView = '/aboutUsView';
+  static const privacyPolicyView = '/privacyPolicyView';
 }
 
 abstract class AppPages {
@@ -94,7 +98,23 @@ abstract class AppPages {
       name: AppRoutes.donorRequestDetailView,
       page: () => DonorRequestDetailView(),
       binding: BindingsBuilder(() {
-        Get.lazyPut<DonorRequestDetailController>(() => DonorRequestDetailController());
+        Get.lazyPut<DonorRequestDetailController>(
+          () => DonorRequestDetailController(),
+        );
+      }),
+    ),
+    GetPage(
+      name: AppRoutes.aboutUsView,
+      page: () => AboutUsView(),
+      binding: BindingsBuilder(() {
+        // Get.lazyPut<SplashController>(() => SplashController());
+      }),
+    ),
+    GetPage(
+      name: AppRoutes.privacyPolicyView,
+      page: () => PrivacyPolicyView(),
+      binding: BindingsBuilder(() {
+        // Get.lazyPut<SplashController>(() => SplashController());
       }),
     ),
     GetPage(

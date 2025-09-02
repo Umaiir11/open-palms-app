@@ -170,7 +170,9 @@ class _LoginViewState extends State<LoginView> {
                       child: AppCustomButton(
                         title: "Sign In",
                         bgColor: AppColors.secondary,
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.offAllNamed(AppRoutes.donorBottomBarView);
+                        },
                       ),
                     ),
                     32.h.height,

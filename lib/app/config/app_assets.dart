@@ -17,6 +17,13 @@ class AppAssets {
   static const String profileIcon = '$imagesPath/profile_icon.png';
   static const String notificationIcon = '$imagesPath/notification_icon.png';
   static const String bronzeBadge = '$imagesPath/bronze_badge.png';
+  static const String notificationIc = '$imagesPath/ic_notification.png';
+  static const String aboutUsIcon = '$imagesPath/is_about_us.png';
+  static const String privacyIcon = '$imagesPath/ic_privacy.png';
+  static const String signOutIcon = '$imagesPath/ic_sign_out.png';
+  static const String deleteIcon = '$imagesPath/ic_delete.png';
+
+
 
   // Svgs Path
   static const String whiteBackButton = '$svgsPath/white_back_button.svg';
@@ -29,4 +36,8 @@ class AppAssets {
   static const String searchIcon = '$svgsPath/search_icon.svg';
   static const String stopWatchIcon = '$svgsPath/stop_watch_icon.svg';
   static const String closeIcon = '$svgsPath/close_icon.svg';
+  static const String editIcon = '$svgsPath/edit_icon.svg';
+  static const String messageIcon = '$svgsPath/message_icon.svg';
+  static const String dividerIc = '$svgsPath/divider_ic.svg';
+  static const String settingTileDivider = '$svgsPath/setting_tile_divider.svg';
 }
