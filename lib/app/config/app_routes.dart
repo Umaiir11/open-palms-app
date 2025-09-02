@@ -5,6 +5,7 @@ import 'package:open_palms/app/mvvm/view/common_views/auth_views/otp_verificatio
 import 'package:open_palms/app/mvvm/view/common_views/auth_views/set_password_view/set_password_view.dart';
 import 'package:open_palms/app/mvvm/view/common_views/auth_views/sign_up_view/sign_up_view.dart';
 import 'package:open_palms/app/mvvm/view/common_views/get_started_view/get_started_view.dart';
+import 'package:open_palms/app/mvvm/view/common_views/notifications_view/notifications_view.dart';
 import 'package:open_palms/app/mvvm/view/common_views/user_selection_view/user_selection_view.dart';
 import 'package:open_palms/app/mvvm/view/donor_side/donor_bottom_bar_view/donor_bottom_bar_view.dart';
 import 'package:open_palms/app/mvvm/view/donor_side/donor_request_detail_view/donor_request_detail_view.dart';
@@ -28,6 +29,7 @@ abstract class AppRoutes {
   static const forgotPasswordView = '/forgotPasswordView';
   static const otpVerificationView = '/otpVerificationView';
   static const setPasswordView = '/setPasswordView';
+  static const notificationsView = '/notificationsView';
 }
 
 abstract class AppPages {
@@ -95,6 +97,13 @@ abstract class AppPages {
       page: () => DonorRequestDetailView(),
       binding: BindingsBuilder(() {
         Get.lazyPut<DonorRequestDetailController>(() => DonorRequestDetailController());
+      }),
+    ),
+    GetPage(
+      name: AppRoutes.notificationsView,
+      page: () => NotificationsView(),
+      binding: BindingsBuilder(() {
+        // Get.lazyPut<DonorRequestDetailController>(() => DonorRequestDetailController());
       }),
     ),
     GetPage(

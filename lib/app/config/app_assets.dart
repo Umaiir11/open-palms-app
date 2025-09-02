@@ -29,4 +29,5 @@ class AppAssets {
   static const String searchIcon = '$svgsPath/search_icon.svg';
   static const String stopWatchIcon = '$svgsPath/stop_watch_icon.svg';
   static const String closeIcon = '$svgsPath/close_icon.svg';
+  static const String checkIcon = '$svgsPath/check_icon.svg';
 }

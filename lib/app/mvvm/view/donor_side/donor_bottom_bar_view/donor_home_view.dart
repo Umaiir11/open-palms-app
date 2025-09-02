@@ -66,7 +66,12 @@ class _DonorHomeViewState extends State<DonorHomeView> {
                 children: [
                   SvgPicture.asset(AppAssets.searchIcon),
                   15.w.width,
-                  Image.asset(AppAssets.notificationIcon, height: 25.h),
+                  GestureDetector(
+                    onTap: () {
+                      Get.toNamed(AppRoutes.notificationsView);
+                    },
+                    child: Image.asset(AppAssets.notificationIcon, height: 25.h),
+                  ),
                 ],
               ),
             ],
@@ -129,7 +134,7 @@ class _DonorHomeViewState extends State<DonorHomeView> {
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
                       return RequestCustomTile(
-                        onTap: (){
+                        onTap: () {
                           Get.toNamed(AppRoutes.donorRequestDetailView, arguments: {'status': 'active'});
                         },
                         title: "Emergency Medical Surgery",
