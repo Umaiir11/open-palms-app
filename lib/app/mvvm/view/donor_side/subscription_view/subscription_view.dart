@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:open_palms/app/config/app_colors.dart';
 import 'package:open_palms/app/config/app_text_style.dart';
 import 'package:open_palms/app/config/app_assets.dart';
@@ -147,7 +148,7 @@ class SubscriptionCard extends StatelessWidget {
                 title: isSelected ? "Selected" : "Choose Plan",
                 onPressed: onSelect,
                 bgColor: AppColors.secondary,
-                icon: Icon(Icons.arrow_right_alt),
+                suffixIcon: SvgPicture.asset(AppAssets.rightArrow),
               ),
             ),
           ],

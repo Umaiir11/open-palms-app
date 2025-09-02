@@ -13,6 +13,7 @@ class AppCustomButton extends StatelessWidget {
   final double? width;
   final TextStyle? textStyle;
   final Widget? icon;
+  final Widget? suffixIcon;
   final Color? bgColor;
   final Color? borderColor;
   final GlobalKey? textKey;
@@ -26,6 +27,7 @@ class AppCustomButton extends StatelessWidget {
     this.width,
     this.textStyle,
     this.icon,
+    this.suffixIcon,
     this.bgColor,
     this.borderColor,
     this.textKey,
@@ -61,6 +63,11 @@ class AppCustomButton extends StatelessWidget {
               key: textKey,
               style: textStyle ?? AppTextStyles.customText16(color: AppColors.white, fontWeight: FontWeight.w500),
             ),
+
+            3.w.width,
+
+            if (suffixIcon != null) 6.width,
+            if (suffixIcon != null) suffixIcon!,
           ],
         ),
       ),
