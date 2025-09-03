@@ -30,7 +30,7 @@ class _OtpVerificationViewState extends State<OtpVerificationView> {
           Align(
             alignment: Alignment.topLeft,
             child: Padding(
-              padding: EdgeInsets.only(top: 50.h, left: 20.w, bottom: 10.h),
+              padding: EdgeInsets.only(top: 50.h, left: 20.w),
               child: GestureDetector(
                 onTap: () => Get.back(),
                 child: SvgPicture.asset(AppAssets.whiteBackButton),

@@ -20,6 +20,17 @@ abstract class AppTextStyles {
     return GoogleFonts.roboto(fontSize: fontSize, fontWeight: fontWeight, color: color, letterSpacing: letterSpacing, height: height);
   }
 
+  static TextStyle customTextFigtree({
+    Color? color,
+    FontWeight fontWeight = FontWeight.normal,
+    double letterSpacing = 0,
+    double fontSize = 12,
+    double? height,
+    String? fontFamily, // added
+  }) {
+    return GoogleFonts.figtree(fontSize: fontSize, fontWeight: fontWeight, color: color, letterSpacing: letterSpacing, height: height);
+  }
+
   static textStyleTextBotton({bool? isUnderline = true, String? fontFamily}) {
     return TextStyle(
       decoration: (isUnderline ?? true) ? TextDecoration.underline : null,

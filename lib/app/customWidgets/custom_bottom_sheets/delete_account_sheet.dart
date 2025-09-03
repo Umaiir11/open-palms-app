@@ -25,9 +25,7 @@ class _DeleteAccountSheetState extends State<DeleteAccountSheet> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: SingleChildScrollView(
-        padding: EdgeInsets.only(
-          bottom: MediaQuery.of(context).viewInsets.bottom,
-        ),
+        padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -45,21 +43,15 @@ class _DeleteAccountSheetState extends State<DeleteAccountSheet> {
             ),
             Text(
               'Delete Account',
-              style: AppTextStyles.customText20(
-                color: Colors.black,
-                fontWeight: FontWeight.w600,
-              ),
+              style: AppTextStyles.customText24(color: Colors.black, fontWeight: FontWeight.w600),
             ),
-            20.h.height,
-
+            10.h.height,
             Align(
               alignment: Alignment.center,
               child: Text(
                 'Your account will be permanently\ndeleted. You no longer can access it.',
-                style: AppTextStyles.customText16(
-                  color: AppColors.secondary,
-                  fontWeight: FontWeight.w500,
-                ),
+                textAlign: TextAlign.center,
+                style: AppTextStyles.customText16(color: AppColors.secondary, fontWeight: FontWeight.w500),
               ),
             ),
             15.h.height,
@@ -71,21 +63,14 @@ class _DeleteAccountSheetState extends State<DeleteAccountSheet> {
                 obscureText: controller.isVisible.value,
                 isRequired: false,
                 suffixIcon: IconButton(
-                  icon: Icon(
-                    controller.isVisible.value
-                        ? Icons.visibility_off
-                        : Icons.visibility,
-                  ),
+                  icon: Icon(controller.isVisible.value ? Icons.visibility_off : Icons.visibility),
                   color: AppColors.toggleColor,
                   onPressed: controller.togglePassword,
                 ),
               ),
             ),
             20.h.height,
-            AppCustomButton(
-              title: 'Delete Account',
-              onPressed: () {},
-            ).paddingHorizontal(50.w),
+            AppCustomButton(title: 'Delete Account', onPressed: () {}).paddingHorizontal(50.w),
             20.h.height,
           ],
         ).paddingHorizontal(15.w),

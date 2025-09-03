@@ -32,20 +32,14 @@ class _SetPasswordViewState extends State<SetPasswordView> {
           Align(
             alignment: Alignment.topLeft,
             child: Padding(
-              padding: EdgeInsets.only(top: 50.h, left: 20.w, bottom: 10.h),
-              child: GestureDetector(
-                onTap: () => Get.back(),
-                child: SvgPicture.asset(AppAssets.whiteBackButton),
-              ),
+              padding: EdgeInsets.only(top: 50.h, left: 20.w),
+              child: GestureDetector(onTap: () => Get.back(), child: SvgPicture.asset(AppAssets.whiteBackButton)),
             ),
           ),
           Center(
             child: Text(
               'Set Password',
-              style: AppTextStyles.customText28(
-                color: Colors.white,
-                fontWeight: FontWeight.w700,
-              ),
+              style: AppTextStyles.customText28(color: Colors.white, fontWeight: FontWeight.w700),
               textAlign: TextAlign.center,
             ),
           ),
@@ -58,10 +52,7 @@ class _SetPasswordViewState extends State<SetPasswordView> {
               margin: EdgeInsets.symmetric(horizontal: 10.w),
               decoration: BoxDecoration(
                 color: AppColors.white,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(14.r),
-                  topRight: Radius.circular(14.r),
-                ),
+                borderRadius: BorderRadius.only(topLeft: Radius.circular(14.r), topRight: Radius.circular(14.r)),
               ),
               child: SingleChildScrollView(
                 physics: BouncingScrollPhysics(),
@@ -71,19 +62,12 @@ class _SetPasswordViewState extends State<SetPasswordView> {
                   children: [
                     Text(
                       "Set Password",
-                      style: AppTextStyles.customText24(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: AppTextStyles.customText24(color: Colors.black, fontWeight: FontWeight.bold),
                     ),
                     6.height,
                     Text(
                       "Please set your password",
-                      style: AppTextStyles.customText14(
-                        color: AppColors.textColorBlackLight,
-                        fontWeight: FontWeight.normal,
-                        height: 1,
-                      ),
+                      style: AppTextStyles.customText14(color: AppColors.textColorBlackLight, fontWeight: FontWeight.normal, height: 1),
                     ),
                     40.h.height,
 
@@ -95,11 +79,7 @@ class _SetPasswordViewState extends State<SetPasswordView> {
                         obscureText: authController.isVisible.value,
                         isRequired: false,
                         suffixIcon: IconButton(
-                          icon: Icon(
-                            authController.isVisible.value
-                                ? Icons.visibility_off
-                                : Icons.visibility,
-                          ),
+                          icon: Icon(authController.isVisible.value ? Icons.visibility_off : Icons.visibility),
                           color: AppColors.toggleColor,
                           onPressed: authController.togglePassword,
                         ),
@@ -113,15 +93,10 @@ class _SetPasswordViewState extends State<SetPasswordView> {
                         labelTitle: 'Confirm Password',
                         hintText: 'Re-enter your password',
                         controller: authController.confirmPasswordController,
-                        obscureText:
-                            authController.isConfirmPasswordVisible.value,
+                        obscureText: authController.isConfirmPasswordVisible.value,
                         isRequired: false,
                         suffixIcon: IconButton(
-                          icon: Icon(
-                            authController.isConfirmPasswordVisible.value
-                                ? Icons.visibility_off
-                                : Icons.visibility,
-                          ),
+                          icon: Icon(authController.isConfirmPasswordVisible.value ? Icons.visibility_off : Icons.visibility),
                           color: AppColors.toggleColor,
                           onPressed: authController.toggleConfirmPassword,
                         ),
@@ -136,7 +111,7 @@ class _SetPasswordViewState extends State<SetPasswordView> {
                         title: "Save",
                         bgColor: AppColors.secondary,
                         onPressed: () {
-                          Get.toNamed(AppRoutes.loginView);
+                          Get.offAllNamed(AppRoutes.userSelectionView);
                         },
                       ),
                     ),

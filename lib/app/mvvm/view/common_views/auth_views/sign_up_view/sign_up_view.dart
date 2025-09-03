@@ -38,28 +38,18 @@ class _SignUpViewState extends State<SignUpView> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // Back Button
-                GestureDetector(
-                  onTap: () => Get.back(),
-                  child: SvgPicture.asset(AppAssets.whiteBackButton),
-                ),
+                GestureDetector(onTap: () => Get.back(), child: SvgPicture.asset(AppAssets.whiteBackButton)),
                 16.h.height,
                 // Title
                 Text(
                   'Sign Up',
-                  style: AppTextStyles.customText24(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w600,
-                  ),
+                  style: AppTextStyles.customText24(color: Colors.white, fontWeight: FontWeight.w600),
                 ),
                 4.h.height,
                 // Subtitle
                 Text(
                   'Complete the form and join Donate',
-                  style: AppTextStyles.customText14(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w400,
-                    height: 1,
-                  ),
+                  style: AppTextStyles.customText14(color: Colors.white, fontWeight: FontWeight.w400, height: 1),
                 ),
               ],
             ),
@@ -72,10 +62,7 @@ class _SignUpViewState extends State<SignUpView> {
               margin: EdgeInsets.symmetric(horizontal: 10.w),
               decoration: BoxDecoration(
                 color: AppColors.white,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(14.r),
-                  topRight: Radius.circular(14.r),
-                ),
+                borderRadius: BorderRadius.only(topLeft: Radius.circular(14.r), topRight: Radius.circular(14.r)),
               ),
               child: SingleChildScrollView(
                 padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 30.h),
@@ -83,25 +70,15 @@ class _SignUpViewState extends State<SignUpView> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    10.h.height,
-
                     /* --- First Name --- */
                     Row(
                       children: [
                         Expanded(
-                          child: AppCustomField(
-                            labelTitle: 'First Name',
-                            hintText: 'Enter first name',
-                            isRequired: false,
-                          ),
+                          child: AppCustomField(labelTitle: 'First Name', hintText: 'Enter first name', isRequired: false),
                         ),
                         15.w.width,
                         Expanded(
-                          child: AppCustomField(
-                            labelTitle: 'Last Name',
-                            hintText: 'Enter last name',
-                            isRequired: false,
-                          ),
+                          child: AppCustomField(labelTitle: 'Last Name', hintText: 'Enter last name', isRequired: false),
                         ),
                       ],
                     ),
@@ -109,11 +86,7 @@ class _SignUpViewState extends State<SignUpView> {
                     20.h.height,
 
                     /* --- Email --- */
-                    AppCustomField(
-                      labelTitle: 'Email Address',
-                      hintText: 'Enter your email',
-                      isRequired: false,
-                    ),
+                    AppCustomField(labelTitle: 'Email Address', hintText: 'Enter your email', isRequired: false),
                     20.h.height,
 
                     /* --- Password --- */
@@ -125,11 +98,7 @@ class _SignUpViewState extends State<SignUpView> {
                         obscureText: authController.isVisible.value,
                         isRequired: false,
                         suffixIcon: IconButton(
-                          icon: Icon(
-                            authController.isVisible.value
-                                ? Icons.visibility_off
-                                : Icons.visibility,
-                          ),
+                          icon: Icon(authController.isVisible.value ? Icons.visibility_off : Icons.visibility),
                           color: AppColors.toggleColor,
                           onPressed: authController.togglePassword,
                         ),
@@ -143,15 +112,10 @@ class _SignUpViewState extends State<SignUpView> {
                         labelTitle: 'Confirm Password',
                         hintText: 'Re-enter your password',
                         controller: authController.confirmPasswordController,
-                        obscureText:
-                            authController.isConfirmPasswordVisible.value,
+                        obscureText: authController.isConfirmPasswordVisible.value,
                         isRequired: false,
                         suffixIcon: IconButton(
-                          icon: Icon(
-                            authController.isConfirmPasswordVisible.value
-                                ? Icons.visibility_off
-                                : Icons.visibility,
-                          ),
+                          icon: Icon(authController.isConfirmPasswordVisible.value ? Icons.visibility_off : Icons.visibility),
                           color: AppColors.toggleColor,
                           onPressed: authController.toggleConfirmPassword,
                         ),
@@ -167,9 +131,8 @@ class _SignUpViewState extends State<SignUpView> {
                         bgColor: AppColors.secondary,
                         onPressed: () {
                           if (GlobalVariables.userType == UserType.donor) {
-                            Get.offAllNamed(AppRoutes.donorBottomBarView);
-                          } else if (GlobalVariables.userType ==
-                              UserType.needy) {
+                            Get.offAllNamed(AppRoutes.loginView);
+                          } else if (GlobalVariables.userType == UserType.needy) {
                             Get.toNamed(AppRoutes.identityVerificationView);
                           } else {}
                         },
@@ -181,10 +144,7 @@ class _SignUpViewState extends State<SignUpView> {
                     Center(
                       child: Text(
                         'OR CONTINUE WITH',
-                        style: AppTextStyles.customText16(
-                          color: AppColors.lightColor,
-                          fontWeight: FontWeight.w500,
-                        ),
+                        style: AppTextStyles.customTextFigtree(color: Color(0xffCDCDCD), fontWeight: FontWeight.w500, fontSize: 18),
                       ),
                     ),
                     30.h.height,
@@ -192,11 +152,7 @@ class _SignUpViewState extends State<SignUpView> {
                     /* --- Social Icons --- */
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        _socialIcon(AppAssets.googleLogo),
-                        20.w.width,
-                        _socialIcon(AppAssets.appleLogo),
-                      ],
+                      children: [_socialIcon(AppAssets.googleLogo), 20.w.width, _socialIcon(AppAssets.appleLogo)],
                     ),
                     30.h.height,
 
@@ -204,21 +160,13 @@ class _SignUpViewState extends State<SignUpView> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          'Already have an account?',
-                          style: AppTextStyles.customText14(
-                            color: Colors.grey.shade700,
-                          ),
-                        ),
+                        Text('Already have an account?', style: AppTextStyles.customText14(color: Colors.black)),
                         5.w.width,
                         GestureDetector(
-                          onTap: () => Get.toNamed(AppRoutes.loginView),
+                          onTap: () => Get.back(),
                           child: Text(
                             'Sign In',
-                            style: AppTextStyles.customText14(
-                              color: AppColors.primary,
-                              fontWeight: FontWeight.bold,
-                            ),
+                            style: AppTextStyles.customText16(color: AppColors.primary, fontWeight: FontWeight.bold),
                           ),
                         ),
                       ],

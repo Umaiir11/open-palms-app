@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:open_palms/app/config/app_colors.dart';
 import 'package:open_palms/app/config/app_strings.dart';
 import 'package:open_palms/app/config/padding_extensions.dart';
+import 'package:open_palms/app/customWidgets/custom_app_bar.dart';
 import 'package:open_palms/app/customWidgets/custom_bottom_sheets/delete_account_sheet.dart';
 import 'package:open_palms/app/customWidgets/custom_bottom_sheets/edit_profile_sheet.dart';
 import 'package:open_palms/app/customWidgets/custom_bottom_sheets/logout_sheet.dart';
@@ -29,6 +30,7 @@ class _DonorProfileViewState extends State<DonorProfileView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: CustomAppBar(title: 'Account & Setting', centerTitle: false, backgroundColor: Colors.transparent, leading: SizedBox.shrink(), leadingWidth: 10.w),
       body: SafeArea(
         child: SingleChildScrollView(
           physics: BouncingScrollPhysics(),
@@ -36,22 +38,10 @@ class _DonorProfileViewState extends State<DonorProfileView> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                AppStrings.accountSettingTitle,
-                style: AppTextStyles.customText20(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              20.h.height,
-
               Container(
                 width: double.infinity,
                 padding: EdgeInsets.all(12.w),
-                decoration: BoxDecoration(
-                  color: AppColors.secondary,
-                  borderRadius: BorderRadius.circular(12.r),
-                ),
+                decoration: BoxDecoration(color: AppColors.secondary, borderRadius: BorderRadius.circular(12.r)),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -65,10 +55,7 @@ class _DonorProfileViewState extends State<DonorProfileView> {
                             10.h.height,
                             Text(
                               "Johnson Williams",
-                              style: AppTextStyles.customText18(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w700,
-                              ),
+                              style: AppTextStyles.customText18(color: Colors.white, fontWeight: FontWeight.w700),
                             ),
                             4.h.height,
                             Row(
@@ -77,10 +64,7 @@ class _DonorProfileViewState extends State<DonorProfileView> {
                                 4.w.width,
                                 Text(
                                   "johnsonwilliams34@gmail.com",
-                                  style: AppTextStyles.customText14(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w400,
-                                  ),
+                                  style: AppTextStyles.customText14(color: Colors.white, fontWeight: FontWeight.w400),
                                 ),
                               ],
                             ),
@@ -88,10 +72,7 @@ class _DonorProfileViewState extends State<DonorProfileView> {
                         ),
                         GestureDetector(
                           onTap: () {
-                            Utils.showBottomSheet(
-                              context: context,
-                              child: EditProfileSheet(),
-                            );
+                            Utils.showBottomSheet(context: context, child: EditProfileSheet());
                           },
                           child: SvgPicture.asset(AppAssets.editIcon),
                         ),
@@ -102,10 +83,7 @@ class _DonorProfileViewState extends State<DonorProfileView> {
 
                     SizedBox(
                       width: double.infinity,
-                      child: SvgPicture.asset(
-                        AppAssets.dividerIc,
-                        fit: BoxFit.fitWidth,
-                      ),
+                      child: SvgPicture.asset(AppAssets.dividerIc, fit: BoxFit.fitWidth),
                     ),
 
                     15.h.height,
@@ -118,38 +96,23 @@ class _DonorProfileViewState extends State<DonorProfileView> {
                           children: [
                             Text(
                               'Total Donation',
-                              style: AppTextStyles.customText16(
-                                color: AppColors.white.withOpacity(0.9),
-                                fontWeight: FontWeight.w500,
-                              ),
+                              style: AppTextStyles.customText16(color: AppColors.white.withOpacity(0.9), fontWeight: FontWeight.w500),
                             ),
                             Text(
                               '\$${4750.00}',
-                              style: AppTextStyles.customText28(
-                                color: AppColors.white,
-                                fontWeight: FontWeight.w600,
-                              ),
+                              style: AppTextStyles.customText28(color: AppColors.white, fontWeight: FontWeight.w600),
                             ),
                           ],
                         ),
                         Container(
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(8.sp),
-                          ),
+                          decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(8.sp)),
                           child: Center(
                             child: Column(
                               children: [
-                                Image.asset(
-                                  AppAssets.bronzeBadge,
-                                  height: 25.h,
-                                ),
+                                Image.asset(AppAssets.bronzeBadge, height: 25.h),
                                 Text(
                                   'Bronze',
-                                  style: AppTextStyles.customText14(
-                                    color: AppColors.black,
-                                    fontWeight: FontWeight.w500,
-                                  ),
+                                  style: AppTextStyles.customText14(color: AppColors.black, fontWeight: FontWeight.w500),
                                 ),
                               ],
                             ),
@@ -172,17 +135,11 @@ class _DonorProfileViewState extends State<DonorProfileView> {
                             children: [
                               Text(
                                 'Bronze',
-                                style: AppTextStyles.customText18(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w500,
-                                ),
+                                style: AppTextStyles.customText18(color: Colors.black, fontWeight: FontWeight.w500),
                               ),
                               Text(
                                 'Silver',
-                                style: AppTextStyles.customText18(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w500,
-                                ),
+                                style: AppTextStyles.customText18(color: Colors.black, fontWeight: FontWeight.w500),
                               ),
                             ],
                           ),
@@ -191,17 +148,12 @@ class _DonorProfileViewState extends State<DonorProfileView> {
                           SliderTheme(
                             data: SliderTheme.of(context).copyWith(
                               activeTrackColor: AppColors.primary,
-                              inactiveTrackColor: AppColors.textLightBlack
-                                  .withOpacity(0.1),
+                              inactiveTrackColor: AppColors.textLightBlack.withOpacity(0.1),
                               thumbColor: Colors.green,
                               trackHeight: 6.0,
-                              thumbShape: RoundSliderThumbShape(
-                                enabledThumbRadius: 12.0,
-                              ),
+                              thumbShape: RoundSliderThumbShape(enabledThumbRadius: 12.0),
                               overlayColor: AppColors.primary,
-                              overlayShape: RoundSliderOverlayShape(
-                                overlayRadius: 20.0,
-                              ),
+                              overlayShape: RoundSliderOverlayShape(overlayRadius: 20.0),
                             ),
                             child: Slider(
                               padding: EdgeInsets.zero,
@@ -222,37 +174,23 @@ class _DonorProfileViewState extends State<DonorProfileView> {
 
               Text(
                 "Other setting",
-                style: AppTextStyles.customText16(
-                  color: AppColors.grey,
-                  fontWeight: FontWeight.w600,
-                ),
+                style: AppTextStyles.customText16(color: AppColors.grey, fontWeight: FontWeight.w600),
               ),
               15.h.height,
 
               Container(
                 width: double.infinity,
-                padding: EdgeInsets.all(16.w),
+                padding: EdgeInsets.all(13.w),
                 decoration: BoxDecoration(
                   color: AppColors.white,
                   borderRadius: BorderRadius.circular(12.r),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.1),
-                      spreadRadius: 2,
-                      blurRadius: 5,
-                      offset: const Offset(0, 3),
-                    ),
-                  ],
+                  boxShadow: [BoxShadow(color: Colors.grey.withOpacity(0.1), spreadRadius: 2, blurRadius: 5, offset: const Offset(0, 3))],
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     _settingsTile(
-                      leading: Image.asset(
-                        AppAssets.notificationIc,
-                        height: 43.h,
-                        width: 43.w,
-                      ),
+                      leading: Image.asset(AppAssets.notificationIc, height: 43.h, width: 43.w),
                       title: "Notifications",
                       trailing: Container(
                         width: 40.w,
@@ -264,9 +202,7 @@ class _DonorProfileViewState extends State<DonorProfileView> {
                             activeColor: AppColors.primary,
                             inactiveThumbColor: AppColors.secondary,
                             inactiveTrackColor: Color(0xFFF3F3F7),
-                            trackOutlineColor: WidgetStateProperty.all(
-                              Colors.transparent,
-                            ),
+                            trackOutlineColor: WidgetStateProperty.all(Colors.transparent),
                             onChanged: (val) {
                               setState(() {
                                 notificationEnabled = val;
@@ -280,18 +216,12 @@ class _DonorProfileViewState extends State<DonorProfileView> {
 
                     6.h.height,
 
-                    SvgPicture.asset(
-                      AppAssets.settingTileDivider,
-                    ).paddingHorizontal(4.w),
+                    SvgPicture.asset(AppAssets.settingTileDivider).paddingHorizontal(4.w),
 
                     6.h.height,
 
                     _settingsTile(
-                      leading: SvgPicture.asset(
-                        AppAssets.subscriptionIcon,
-                        height: 43.h,
-                        width: 43.w,
-                      ),
+                      leading: SvgPicture.asset(AppAssets.subscriptionIcon, height: 43.h, width: 43.w),
                       title: "Subscription",
                       trailing: Icon(Icons.arrow_forward_ios, size: 16.sp),
                       onTap: () {
@@ -301,18 +231,12 @@ class _DonorProfileViewState extends State<DonorProfileView> {
 
                     6.h.height,
 
-                    SvgPicture.asset(
-                      AppAssets.settingTileDivider,
-                    ).paddingHorizontal(4.w),
+                    SvgPicture.asset(AppAssets.settingTileDivider).paddingHorizontal(4.w),
 
                     6.h.height,
 
                     _settingsTile(
-                      leading: Image.asset(
-                        AppAssets.aboutUsIcon,
-                        height: 43.h,
-                        width: 43.w,
-                      ),
+                      leading: Image.asset(AppAssets.aboutUsIcon, height: 43.h, width: 43.w),
                       title: "About Us",
                       trailing: Icon(Icons.arrow_forward_ios, size: 16.sp),
                       onTap: () {
@@ -322,18 +246,12 @@ class _DonorProfileViewState extends State<DonorProfileView> {
 
                     6.h.height,
 
-                    SvgPicture.asset(
-                      AppAssets.settingTileDivider,
-                    ).paddingHorizontal(4.w),
+                    SvgPicture.asset(AppAssets.settingTileDivider).paddingHorizontal(4.w),
 
                     6.h.height,
 
                     _settingsTile(
-                      leading: Image.asset(
-                        AppAssets.privacyIcon,
-                        height: 43.h,
-                        width: 43.w,
-                      ),
+                      leading: Image.asset(AppAssets.privacyIcon, height: 43.h, width: 43.w),
                       title: "Privacy Policy",
                       trailing: Icon(Icons.arrow_forward_ios, size: 16.sp),
                       onTap: () {
@@ -343,50 +261,32 @@ class _DonorProfileViewState extends State<DonorProfileView> {
 
                     6.h.height,
 
-                    SvgPicture.asset(
-                      AppAssets.settingTileDivider,
-                    ).paddingHorizontal(4.w),
+                    SvgPicture.asset(AppAssets.settingTileDivider).paddingHorizontal(4.w),
 
                     6.h.height,
 
                     _settingsTile(
-                      leading: Image.asset(
-                        AppAssets.signOutIcon,
-                        height: 43.h,
-                        width: 43.w,
-                      ),
+                      leading: Image.asset(AppAssets.signOutIcon, height: 43.h, width: 43.w),
                       title: "Sign out",
-                      trailing: Icon(Icons.arrow_forward_ios, size: 16.sp),
+                      trailing: SizedBox.shrink(),
                       onTap: () {
-                        Utils.showBottomSheet(
-                          context: context,
-                          child: LogoutSheet(),
-                        );
+                        Utils.showBottomSheet(context: context, child: LogoutSheet());
                       },
                     ),
 
                     6.h.height,
 
-                    SvgPicture.asset(
-                      AppAssets.settingTileDivider,
-                    ).paddingHorizontal(4.w),
+                    SvgPicture.asset(AppAssets.settingTileDivider).paddingHorizontal(4.w),
 
                     6.h.height,
 
                     _settingsTile(
-                      leading: Image.asset(
-                        AppAssets.deleteIcon,
-                        height: 43.h,
-                        width: 43.w,
-                      ),
+                      leading: Image.asset(AppAssets.deleteIcon, height: 43.h, width: 43.w),
                       title: "Delete account",
                       titleColor: Colors.red,
                       trailing: const SizedBox(),
                       onTap: () {
-                        Utils.showBottomSheet(
-                          context: context,
-                          child: DeleteAccountSheet(),
-                        );
+                        Utils.showBottomSheet(context: context, child: DeleteAccountSheet());
                       },
                     ),
                   ],
@@ -411,10 +311,7 @@ class _DonorProfileViewState extends State<DonorProfileView> {
       leading: leading,
       title: Text(
         title,
-        style: AppTextStyles.customText14(
-          color: titleColor,
-          fontWeight: FontWeight.w400,
-        ),
+        style: AppTextStyles.customText14(color: titleColor, fontWeight: FontWeight.w400),
       ),
       trailing: trailing,
       onTap: onTap,

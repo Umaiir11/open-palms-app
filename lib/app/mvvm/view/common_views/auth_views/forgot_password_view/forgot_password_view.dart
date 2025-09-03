@@ -29,20 +29,14 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
           Align(
             alignment: Alignment.topLeft,
             child: Padding(
-              padding: EdgeInsets.only(top: 50.h, left: 20.w, bottom: 10.h),
-              child: GestureDetector(
-                onTap: () => Get.back(),
-                child: SvgPicture.asset(AppAssets.whiteBackButton),
-              ),
+              padding: EdgeInsets.only(top: 50.h, left: 20.w),
+              child: GestureDetector(onTap: () => Get.back(), child: SvgPicture.asset(AppAssets.whiteBackButton)),
             ),
           ),
           Center(
             child: Text(
               'Forgot Password',
-              style: AppTextStyles.customText28(
-                color: Colors.white,
-                fontWeight: FontWeight.w700,
-              ),
+              style: AppTextStyles.customText28(color: Colors.white, fontWeight: FontWeight.w700),
               textAlign: TextAlign.center,
             ),
           ),
@@ -55,10 +49,7 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
               margin: EdgeInsets.symmetric(horizontal: 10.w),
               decoration: BoxDecoration(
                 color: AppColors.white,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(14.r),
-                  topRight: Radius.circular(14.r),
-                ),
+                borderRadius: BorderRadius.only(topLeft: Radius.circular(14.r), topRight: Radius.circular(14.r)),
               ),
               child: SingleChildScrollView(
                 physics: BouncingScrollPhysics(),
@@ -68,28 +59,17 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
                   children: [
                     Text(
                       "Forgot Password?",
-                      style: AppTextStyles.customText24(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: AppTextStyles.customText24(color: Colors.black, fontWeight: FontWeight.bold),
                     ),
                     6.height,
                     Text(
                       "Enter your registered Email address for\nverification.",
-                      style: AppTextStyles.customText14(
-                        color: AppColors.textColorBlackLight,
-                        fontWeight: FontWeight.normal,
-                      ),
+                      style: AppTextStyles.customText14(color: AppColors.textColorBlackLight, fontWeight: FontWeight.normal),
                     ),
                     36.height,
 
                     /// Email Field
-                    AppCustomField(
-                      labelTitle: "Email Address",
-                      labelColor: AppColors.textColorBlackLight,
-                      hintText: "Enter your email",
-                      isRequired: false,
-                    ),
+                    AppCustomField(labelTitle: "Email Address", labelColor: AppColors.textColorBlackLight, hintText: "Enter your email", isRequired: false),
                     70.h.height,
 
                     Padding(

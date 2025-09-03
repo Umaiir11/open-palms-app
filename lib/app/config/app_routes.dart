@@ -12,8 +12,13 @@ import 'package:open_palms/app/mvvm/view/donor_side/donor_bottom_bar_view/donor_
 import 'package:open_palms/app/mvvm/view/donor_side/donor_request_detail_view/donor_request_detail_view.dart';
 import 'package:open_palms/app/mvvm/view/donor_side/privacy_policy_view/privacy_policy_view.dart';
 import 'package:open_palms/app/mvvm/view/donor_side/selfie_verification_view/selfie_verification_view.dart';
+import 'package:open_palms/app/mvvm/view/need_people_side/need_people_home_view/need_people_home_view.dart';
+import 'package:open_palms/app/mvvm/view/need_people_side/needy_request_detail_view/needy_request_detail_view.dart';
+import 'package:open_palms/app/mvvm/view/need_people_side/needy_request_history_view/needy_request_history_view.dart';
+import 'package:open_palms/app/mvvm/view_model/common_controllers/auth_controllers/sign_up_controller.dart';
 import 'package:open_palms/app/mvvm/view_model/donor_side_controllers/donor_home_controller/donor_home_controller.dart';
 import 'package:open_palms/app/mvvm/view_model/donor_side_controllers/donor_request_detail_controller.dart';
+import 'package:open_palms/app/mvvm/view_model/needy_side_controllers/needy_request_detail_controller.dart';
 
 import '../mvvm/view/common_views/splash_view/splash_view.dart';
 import '../mvvm/view/donor_side/identity_verification_view/identity_verification_view.dart';
@@ -40,6 +45,9 @@ abstract class AppRoutes {
   static const subscriptionView = '/subscriptionView';
   static const identityVerificationView = '/identityVerificationView';
   static const selfieVerificationView = '/selfieVerificationView';
+  static const needyHomeView = '/needyHomeView';
+  static const needyRequestDetailView = '/needyRequestDetailView';
+  static const needyRequestHistoryView = '/needyRequestHistoryView';
 }
 
 abstract class AppPages {
@@ -106,9 +114,7 @@ abstract class AppPages {
       name: AppRoutes.donorRequestDetailView,
       page: () => DonorRequestDetailView(),
       binding: BindingsBuilder(() {
-        Get.lazyPut<DonorRequestDetailController>(
-          () => DonorRequestDetailController(),
-        );
+        Get.lazyPut<DonorRequestDetailController>(() => DonorRequestDetailController());
       }),
     ),
     GetPage(
@@ -143,14 +149,14 @@ abstract class AppPages {
       name: AppRoutes.identityVerificationView,
       page: () => IdentityVerifyView(),
       binding: BindingsBuilder(() {
-        // Get.lazyPut<DonorRequestDetailController>(() => DonorRequestDetailController());
+        Get.lazyPut<SignUpController>(() => SignUpController());
       }),
     ),
     GetPage(
       name: AppRoutes.selfieVerificationView,
       page: () => SelfieVerificationView(),
       binding: BindingsBuilder(() {
-        // Get.lazyPut<DonorRequestDetailController>(() => DonorRequestDetailController());
+        Get.lazyPut<SignUpController>(() => SignUpController());
       }),
     ),
     GetPage(
@@ -159,6 +165,27 @@ abstract class AppPages {
       binding: BindingsBuilder(() {
         Get.lazyPut<BottomBarController>(() => BottomBarController());
         Get.lazyPut<DonorHomeController>(() => DonorHomeController());
+      }),
+    ),
+    GetPage(
+      name: AppRoutes.needyHomeView,
+      page: () => NeedPeopleHomeView(),
+      binding: BindingsBuilder(() {
+        // Get.lazyPut<BottomBarController>(() => BottomBarController());
+      }),
+    ),
+    GetPage(
+      name: AppRoutes.needyRequestDetailView,
+      page: () => NeedyRequestDetailView(),
+      binding: BindingsBuilder(() {
+        Get.lazyPut<NeedyRequestDetailController>(() => NeedyRequestDetailController());
+      }),
+    ),
+    GetPage(
+      name: AppRoutes.needyRequestHistoryView,
+      page: () => NeedyRequestHistoryView(),
+      binding: BindingsBuilder(() {
+        // Get.lazyPut<NeedyRequestDetailController>(() => NeedyRequestDetailController());
       }),
     ),
   ];

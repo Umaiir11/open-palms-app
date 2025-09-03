@@ -21,9 +21,7 @@ class _EditProfileSheetState extends State<EditProfileSheet> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: SingleChildScrollView(
-        padding: EdgeInsets.only(
-          bottom: MediaQuery.of(context).viewInsets.bottom + 20.h,
-        ),
+        padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -41,29 +39,17 @@ class _EditProfileSheetState extends State<EditProfileSheet> {
             ),
             Text(
               'Edit Profile',
-              style: AppTextStyles.customText20(
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-              ),
+              style: AppTextStyles.customText24(color: Color(0xff111827), fontWeight: FontWeight.bold),
             ),
             22.h.height,
-
             Row(
               children: [
                 Expanded(
-                  child: AppCustomField(
-                    labelTitle: 'First Name',
-                    hintText: 'Enter first name',
-                    isRequired: false,
-                  ),
+                  child: AppCustomField(labelTitle: 'First Name', hintText: 'Enter first name', isRequired: false),
                 ),
                 15.w.width,
                 Expanded(
-                  child: AppCustomField(
-                    labelTitle: 'Last Name',
-                    hintText: 'Enter last name',
-                    isRequired: false,
-                  ),
+                  child: AppCustomField(labelTitle: 'Last Name', hintText: 'Enter last name', isRequired: false),
                 ),
               ],
             ),
@@ -71,17 +57,10 @@ class _EditProfileSheetState extends State<EditProfileSheet> {
             20.h.height,
 
             /* --- Email --- */
-            AppCustomField(
-              labelTitle: 'Email Address',
-              hintText: 'Enter your email',
-              isRequired: false,
-            ),
+            AppCustomField(labelTitle: 'Email Address', hintText: 'Enter your email', isRequired: false),
             30.h.height,
 
-            AppCustomButton(
-              title: 'Update Profile',
-              onPressed: () {},
-            ).paddingHorizontal(50.w),
+            AppCustomButton(title: 'Update Profile', onPressed: () {}).paddingHorizontal(50.w),
             10.h.height,
           ],
         ).paddingHorizontal(15.w),

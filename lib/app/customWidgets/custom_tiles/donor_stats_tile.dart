@@ -42,13 +42,14 @@ class DonorStatsTile extends StatelessWidget {
                   child: Column(
                     children: [
                       Image.asset(AppAssets.bronzeBadge, height: 25.h),
+                      5.h.height,
                       Text(
                         '$badge',
                         style: AppTextStyles.customText14(color: AppColors.black, fontWeight: FontWeight.w500),
                       ),
                     ],
                   ),
-                ).paddingHorizontal(10.w).paddingVertical(8.h),
+                ).paddingHorizontal(10.w).paddingVertical(5.h),
               ),
             ],
           ),

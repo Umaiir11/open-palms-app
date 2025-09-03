@@ -17,6 +17,9 @@ class AppAssets {
   static const String profileIcon = '$imagesPath/profile_icon.png';
   static const String notificationIcon = '$imagesPath/notification_icon.png';
   static const String bronzeBadge = '$imagesPath/bronze_badge.png';
+  static const String silverBadge = '$imagesPath/silver_badge.png';
+  static const String goldBadge = '$imagesPath/gold_badge.png';
+  static const String platinumBadge = '$imagesPath/platinum_badge.png';
   static const String notificationIc = '$imagesPath/ic_notification.png';
   static const String aboutUsIcon = '$imagesPath/is_about_us.png';
   static const String privacyIcon = '$imagesPath/ic_privacy.png';
@@ -27,9 +30,8 @@ class AppAssets {
   static const String licenseIcon = '$imagesPath/license_icon.png';
   static const String tickIcon = '$imagesPath/tick_icon.png';
   static const String placeholderIcon = '$imagesPath/placeholder_icon.png';
-
-
-
+  static const String liningBg = '$imagesPath/lining_bg.png';
+  static const String addRequestIcon = '$imagesPath/add_request_icon.png';
 
   // Svgs Path
   static const String whiteBackButton = '$svgsPath/white_back_button.svg';
@@ -50,4 +52,5 @@ class AppAssets {
   static const String rightArrow = '$svgsPath/right_arrow.svg';
   static const String checkIcon = '$svgsPath/check_icon.svg';
   static const String cameraIcon = '$svgsPath/camera_icon.svg';
+  static const String seeAllIcon = '$svgsPath/see_all_icon.svg';
 }
