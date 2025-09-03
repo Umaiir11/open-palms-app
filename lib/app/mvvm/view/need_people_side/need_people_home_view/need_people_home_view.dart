@@ -28,7 +28,14 @@ class _NeedPeopleHomeViewState extends State<NeedPeopleHomeView> {
       floatingActionButton: SafeArea(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
-          children: [Image.asset(AppAssets.addRequestIcon, height: 75.h)],
+          children: [
+            GestureDetector(
+              onTap: () {
+                Get.toNamed(AppRoutes.createRequestView);
+              },
+              child: Image.asset(AppAssets.addRequestIcon, height: 75.h),
+            ),
+          ],
         ),
       ).paddingRight(15.w),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
@@ -41,12 +48,17 @@ class _NeedPeopleHomeViewState extends State<NeedPeopleHomeView> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(color: AppColors.primaryLight, width: 1.5),
+                  GestureDetector(
+                    onTap: () {
+                      Get.toNamed(AppRoutes.donorProfileView);
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(color: AppColors.primaryLight, width: 1.5),
+                      ),
+                      child: CustomCachedImage(height: 50.sp, width: 50.sp, imageUrl: '', borderRadius: 100.sp, name: "Rupak Chakraborty").paddingFromAll(2.sp),
                     ),
-                    child: CustomCachedImage(height: 50.sp, width: 50.sp, imageUrl: '', borderRadius: 100.sp, name: "Rupak Chakraborty").paddingFromAll(2.sp),
                   ),
                   10.w.width,
                   Column(

@@ -135,7 +135,11 @@ class AppCustomField extends StatelessWidget {
             children: [
               Text(
                 labelTitle ?? '',
-                style: AppTextStyles.customText(fontSize: labelTitleSize ?? 16, color: labelColor ?? AppColors.textLightBlack),
+                style: AppTextStyles.customText(
+                  fontSize: labelTitleSize ?? 16,
+                  color: labelColor ?? AppColors.textLightBlack,
+                  fontWeight: isSecondField == true ? FontWeight.w500 : FontWeight.w400,
+                ),
               ),
               if (isRequired) Text(' *', style: AppTextStyles.customText16(color: AppColors.primary)),
             ],

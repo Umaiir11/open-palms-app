@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:open_palms/app/config/app_colors.dart';
 import 'package:open_palms/app/config/app_strings.dart';
+import 'package:open_palms/app/config/global_variables.dart';
 import 'package:open_palms/app/config/padding_extensions.dart';
 import 'package:open_palms/app/customWidgets/custom_app_bar.dart';
 import 'package:open_palms/app/customWidgets/custom_bottom_sheets/delete_account_sheet.dart';
@@ -30,7 +31,13 @@ class _DonorProfileViewState extends State<DonorProfileView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: CustomAppBar(title: 'Account & Setting', centerTitle: false, backgroundColor: Colors.transparent, leading: SizedBox.shrink(), leadingWidth: 10.w),
+      appBar: CustomAppBar(
+        title: 'Account & Setting',
+        centerTitle: GlobalVariables.userType == UserType.needy ? true : false,
+        backgroundColor: Colors.transparent,
+        leading: GlobalVariables.userType == UserType.needy ? null : SizedBox.shrink(),
+        leadingWidth: GlobalVariables.userType == UserType.needy ? null : 10.w,
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           physics: BouncingScrollPhysics(),
@@ -41,7 +48,11 @@ class _DonorProfileViewState extends State<DonorProfileView> {
               Container(
                 width: double.infinity,
                 padding: EdgeInsets.all(12.w),
-                decoration: BoxDecoration(color: AppColors.secondary, borderRadius: BorderRadius.circular(12.r)),
+                decoration: BoxDecoration(
+                  color: AppColors.secondary,
+                  borderRadius: BorderRadius.circular(12.r),
+                  image: GlobalVariables.userType == UserType.needy ? DecorationImage(image: AssetImage(AppAssets.liningBg), fit: BoxFit.cover) : null,
+                ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -87,86 +98,96 @@ class _DonorProfileViewState extends State<DonorProfileView> {
                     ),
 
                     15.h.height,
-
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Total Donation',
-                              style: AppTextStyles.customText16(color: AppColors.white.withOpacity(0.9), fontWeight: FontWeight.w500),
-                            ),
-                            Text(
-                              '\$${4750.00}',
-                              style: AppTextStyles.customText28(color: AppColors.white, fontWeight: FontWeight.w600),
-                            ),
-                          ],
-                        ),
-                        Container(
-                          decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(8.sp)),
-                          child: Center(
-                            child: Column(
-                              children: [
-                                Image.asset(AppAssets.bronzeBadge, height: 25.h),
-                                Text(
-                                  'Bronze',
-                                  style: AppTextStyles.customText14(color: AppColors.black, fontWeight: FontWeight.w500),
-                                ),
-                              ],
-                            ),
-                          ).paddingHorizontal(10.w).paddingVertical(8.h),
-                        ),
-                      ],
-                    ),
-                    15.h.height,
-
-                    Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(6.sp),
-                        border: Border.all(color: const Color(0xffE5E5E5)),
+                    if (GlobalVariables.userType == UserType.needy) ...[
+                      Text('Total Received', style: AppTextStyles.customText14(color: Colors.white.withOpacity(0.6))),
+                      5.h.height,
+                      Text(
+                        '\$7550.00',
+                        style: AppTextStyles.customText26(color: Colors.white, fontWeight: FontWeight.bold),
                       ),
-                      child: Column(
+                    ] else ...[
+                      Column(
                         children: [
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                'Bronze',
-                                style: AppTextStyles.customText18(color: Colors.black, fontWeight: FontWeight.w500),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Total Donation',
+                                    style: AppTextStyles.customText16(color: AppColors.white.withOpacity(0.9), fontWeight: FontWeight.w500),
+                                  ),
+                                  Text(
+                                    '\$${4750.00}',
+                                    style: AppTextStyles.customText28(color: AppColors.white, fontWeight: FontWeight.w600),
+                                  ),
+                                ],
                               ),
-                              Text(
-                                'Silver',
-                                style: AppTextStyles.customText18(color: Colors.black, fontWeight: FontWeight.w500),
+                              Container(
+                                decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(8.sp)),
+                                child: Center(
+                                  child: Column(
+                                    children: [
+                                      Image.asset(AppAssets.bronzeBadge, height: 25.h),
+                                      Text(
+                                        'Bronze',
+                                        style: AppTextStyles.customText14(color: AppColors.black, fontWeight: FontWeight.w500),
+                                      ),
+                                    ],
+                                  ),
+                                ).paddingHorizontal(10.w).paddingVertical(8.h),
                               ),
                             ],
                           ),
-                          10.h.height,
-
-                          SliderTheme(
-                            data: SliderTheme.of(context).copyWith(
-                              activeTrackColor: AppColors.primary,
-                              inactiveTrackColor: AppColors.textLightBlack.withOpacity(0.1),
-                              thumbColor: Colors.green,
-                              trackHeight: 6.0,
-                              thumbShape: RoundSliderThumbShape(enabledThumbRadius: 12.0),
-                              overlayColor: AppColors.primary,
-                              overlayShape: RoundSliderOverlayShape(overlayRadius: 20.0),
+                          15.h.height,
+                          Container(
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(6.sp),
+                              border: Border.all(color: const Color(0xffE5E5E5)),
                             ),
-                            child: Slider(
-                              padding: EdgeInsets.zero,
-                              value: badgeValue ?? 0.0,
-                              min: 0.0,
-                              max: 10.0,
-                              divisions: 100,
-                              onChanged: (double value) {},
-                            ),
+                            child: Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      'Bronze',
+                                      style: AppTextStyles.customText18(color: Colors.black, fontWeight: FontWeight.w500),
+                                    ),
+                                    Text(
+                                      'Silver',
+                                      style: AppTextStyles.customText18(color: Colors.black, fontWeight: FontWeight.w500),
+                                    ),
+                                  ],
+                                ),
+                                10.h.height,
+                                SliderTheme(
+                                  data: SliderTheme.of(context).copyWith(
+                                    activeTrackColor: AppColors.primary,
+                                    inactiveTrackColor: AppColors.textLightBlack.withOpacity(0.1),
+                                    thumbColor: Colors.green,
+                                    trackHeight: 6.0,
+                                    thumbShape: RoundSliderThumbShape(enabledThumbRadius: 12.0),
+                                    overlayColor: AppColors.primary,
+                                    overlayShape: RoundSliderOverlayShape(overlayRadius: 20.0),
+                                  ),
+                                  child: Slider(
+                                    padding: EdgeInsets.zero,
+                                    value: badgeValue ?? 0.0,
+                                    min: 0.0,
+                                    max: 10.0,
+                                    divisions: 100,
+                                    onChanged: (double value) {},
+                                  ),
+                                ),
+                              ],
+                            ).paddingFromAll(10.sp),
                           ),
                         ],
-                      ).paddingFromAll(10.sp),
-                    ),
+                      ),
+                    ],
                   ],
                 ),
               ),
@@ -215,21 +236,20 @@ class _DonorProfileViewState extends State<DonorProfileView> {
                     ),
 
                     6.h.height,
+                    if (GlobalVariables.userType == UserType.donor) ...[
+                      6.h.height,
+                      SvgPicture.asset(AppAssets.settingTileDivider).paddingHorizontal(4.w),
+                      _settingsTile(
+                        leading: SvgPicture.asset(AppAssets.subscriptionIcon, height: 43.h, width: 43.w),
+                        title: "Subscription",
+                        trailing: Icon(Icons.arrow_forward_ios, size: 16.sp),
+                        onTap: () {
+                          Get.toNamed(AppRoutes.subscriptionView);
+                        },
+                      ),
 
-                    SvgPicture.asset(AppAssets.settingTileDivider).paddingHorizontal(4.w),
-
-                    6.h.height,
-
-                    _settingsTile(
-                      leading: SvgPicture.asset(AppAssets.subscriptionIcon, height: 43.h, width: 43.w),
-                      title: "Subscription",
-                      trailing: Icon(Icons.arrow_forward_ios, size: 16.sp),
-                      onTap: () {
-                        Get.toNamed(AppRoutes.subscriptionView);
-                      },
-                    ),
-
-                    6.h.height,
+                      6.h.height,
+                    ],
 
                     SvgPicture.asset(AppAssets.settingTileDivider).paddingHorizontal(4.w),
 

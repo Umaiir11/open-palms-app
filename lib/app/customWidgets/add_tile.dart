@@ -111,7 +111,7 @@ class _AddTilesState extends State<AddTiles> {
             height: widget.height ?? 156.h,
             width: widget.width ?? double.infinity,
             decoration: BoxDecoration(
-              color: AppColors.white,
+              color: Color(0xffF6F6F6),
               borderRadius: BorderRadius.circular(12.sp),
               border: Border.all(color: AppColors.transparent),
             ),
@@ -175,12 +175,12 @@ class _AddTilesState extends State<AddTiles> {
                 bottom: 0,
                 right: -2,
                 child: Container(
-                  decoration: BoxDecoration(color: AppColors.scaffoldBgColor, shape: BoxShape.circle),
+                  decoration: BoxDecoration(color: AppColors.white, shape: BoxShape.circle),
                   child: Container(
                     decoration: BoxDecoration(color: AppColors.primary, shape: BoxShape.circle),
                     child: InkWell(
                       onTap: widget.onIconTap,
-                      child: Icon(widget.icon ?? Icons.add, color: AppColors.black, size: 14.sp).paddingAll(4.sp),
+                      child: Icon(widget.icon ?? Icons.add, color: AppColors.white, size: 14.sp).paddingAll(4.sp),
                     ),
                   ).paddingAll(3.sp),
                 ),
