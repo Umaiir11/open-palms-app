@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -31,31 +32,37 @@ class _SignUpViewState extends State<SignUpView> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Fixed the alignment issue here
+          /* --- Header Section --- */
           Padding(
             padding: EdgeInsets.only(top: 50.h, left: 20.w, right: 20.w),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Back Button
-                GestureDetector(onTap: () => Get.back(), child: SvgPicture.asset(AppAssets.whiteBackButton)),
+                GestureDetector(
+                  onTap: () => Get.back(),
+                  child: SvgPicture.asset(AppAssets.whiteBackButton),
+                ).animate().fadeIn(duration: 400.ms).slideX(begin: -0.3, curve: Curves.easeOut),
+
                 16.h.height,
-                // Title
+
                 Text(
                   'Sign Up',
                   style: AppTextStyles.customText24(color: Colors.white, fontWeight: FontWeight.w600),
-                ),
+                ).animate().fadeIn(duration: 500.ms, delay: 200.ms).slideY(begin: -0.2),
+
                 4.h.height,
-                // Subtitle
+
                 Text(
                   'Complete the form and join Donate',
                   style: AppTextStyles.customText14(color: Colors.white, fontWeight: FontWeight.w400, height: 1),
-                ),
+                ).animate().fadeIn(duration: 500.ms, delay: 300.ms).slideY(begin: -0.1),
               ],
             ),
           ),
+
           16.h.height,
 
+          /* --- Content --- */
           Expanded(
             child: Container(
               width: double.infinity,
@@ -66,30 +73,33 @@ class _SignUpViewState extends State<SignUpView> {
               ),
               child: SingleChildScrollView(
                 padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 30.h),
-                physics: BouncingScrollPhysics(),
+                physics: const BouncingScrollPhysics(),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    /* --- First Name --- */
+                    /* --- First & Last Name --- */
                     Row(
                       children: [
                         Expanded(
                           child: AppCustomField(labelTitle: 'First Name', hintText: 'Enter first name', isRequired: false),
-                        ),
+                        ).animate().fadeIn(duration: 400.ms, delay: 200.ms).slideY(begin: 0.2),
                         15.w.width,
                         Expanded(
                           child: AppCustomField(labelTitle: 'Last Name', hintText: 'Enter last name', isRequired: false),
-                        ),
+                        ).animate().fadeIn(duration: 400.ms, delay: 300.ms).slideY(begin: 0.2),
                       ],
                     ),
 
                     20.h.height,
 
-                    /* --- Email --- */
-                    AppCustomField(labelTitle: 'Email Address', hintText: 'Enter your email', isRequired: false),
+                    AppCustomField(
+                      labelTitle: 'Email Address',
+                      hintText: 'Enter your email',
+                      isRequired: false,
+                    ).animate().fadeIn(duration: 400.ms, delay: 400.ms).slideY(begin: 0.2),
+
                     20.h.height,
 
-                    /* --- Password --- */
                     Obx(
                       () => AppCustomField(
                         labelTitle: 'Password',
@@ -102,11 +112,11 @@ class _SignUpViewState extends State<SignUpView> {
                           color: AppColors.toggleColor,
                           onPressed: authController.togglePassword,
                         ),
-                      ),
+                      ).animate().fadeIn(duration: 400.ms, delay: 500.ms).slideY(begin: 0.2),
                     ),
+
                     20.h.height,
 
-                    /* --- Confirm Password --- */
                     Obx(
                       () => AppCustomField(
                         labelTitle: 'Confirm Password',
@@ -119,11 +129,12 @@ class _SignUpViewState extends State<SignUpView> {
                           color: AppColors.toggleColor,
                           onPressed: authController.toggleConfirmPassword,
                         ),
-                      ),
+                      ).animate().fadeIn(duration: 400.ms, delay: 600.ms).slideY(begin: 0.2),
                     ),
+
                     30.h.height,
 
-                    /* --- Sign-Up Button --- */
+                    /* --- Sign Up Button --- */
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 40.w),
                       child: AppCustomButton(
@@ -134,26 +145,33 @@ class _SignUpViewState extends State<SignUpView> {
                             Get.offAllNamed(AppRoutes.loginView);
                           } else if (GlobalVariables.userType == UserType.needy) {
                             Get.toNamed(AppRoutes.identityVerificationView);
-                          } else {}
+                          }
                         },
-                      ),
+                      ).animate().fadeIn(duration: 600.ms, delay: 700.ms).scale(begin: const Offset(0.9, 0.9)),
                     ),
+
                     30.h.height,
 
-                    /* --- OR CONTINUE WITH --- */
+                    /* --- Divider Text --- */
                     Center(
                       child: Text(
                         'OR CONTINUE WITH',
-                        style: AppTextStyles.customTextFigtree(color: Color(0xffCDCDCD), fontWeight: FontWeight.w500, fontSize: 18),
-                      ),
+                        style: AppTextStyles.customTextFigtree(color: const Color(0xffCDCDCD), fontWeight: FontWeight.w500, fontSize: 18),
+                      ).animate().fadeIn(duration: 500.ms, delay: 800.ms),
                     ),
+
                     30.h.height,
 
                     /* --- Social Icons --- */
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [_socialIcon(AppAssets.googleLogo), 20.w.width, _socialIcon(AppAssets.appleLogo)],
+                      children: [
+                        _socialIcon(AppAssets.googleLogo).animate().fadeIn(duration: 500.ms, delay: 900.ms).scale(begin: const Offset(0.8, 0.8)),
+                        20.w.width,
+                        _socialIcon(AppAssets.appleLogo).animate().fadeIn(duration: 500.ms, delay: 1000.ms).scale(begin: const Offset(0.8, 0.8)),
+                      ],
                     ),
+
                     30.h.height,
 
                     /* --- Bottom Row --- */
@@ -170,11 +188,11 @@ class _SignUpViewState extends State<SignUpView> {
                           ),
                         ),
                       ],
-                    ),
+                    ).animate().fadeIn(duration: 500.ms, delay: 1100.ms).slideY(begin: 0.2),
                   ],
                 ),
               ),
-            ),
+            ).animate().fadeIn(duration: 500.ms, delay: 150.ms).slideY(begin: 0.3, curve: Curves.easeOut),
           ),
         ],
       ),

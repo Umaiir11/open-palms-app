@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:open_palms/app/config/app_assets.dart';
 import 'package:open_palms/app/config/app_strings.dart';
 import 'package:open_palms/app/customWidgets/app_custom_button.dart';
@@ -27,6 +28,7 @@ class _OtpVerificationViewState extends State<OtpVerificationView> {
       backgroundColor: AppColors.primary,
       body: Column(
         children: [
+          /// Back Button
           Align(
             alignment: Alignment.topLeft,
             child: Padding(
@@ -34,32 +36,29 @@ class _OtpVerificationViewState extends State<OtpVerificationView> {
               child: GestureDetector(
                 onTap: () => Get.back(),
                 child: SvgPicture.asset(AppAssets.whiteBackButton),
-              ),
+              ).animate().fadeIn(duration: 600.ms).slideX(begin: -0.3, curve: Curves.easeOut),
             ),
           ),
+
+          /// Title
           Center(
             child: Text(
               'OTP Verification',
-              style: AppTextStyles.customText28(
-                color: Colors.white,
-                fontWeight: FontWeight.w700,
-              ),
+              style: AppTextStyles.customText28(color: Colors.white, fontWeight: FontWeight.w700),
               textAlign: TextAlign.center,
-            ),
+            ).animate().fadeIn(duration: 700.ms).slideY(begin: -0.2, curve: Curves.easeOut),
           ),
 
           14.h.height,
 
+          /// White Container
           Expanded(
             child: Container(
               width: double.infinity,
               margin: EdgeInsets.symmetric(horizontal: 10.w),
               decoration: BoxDecoration(
                 color: AppColors.white,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(14.r),
-                  topRight: Radius.circular(14.r),
-                ),
+                borderRadius: BorderRadius.only(topLeft: Radius.circular(14.r), topRight: Radius.circular(14.r)),
               ),
               child: SingleChildScrollView(
                 physics: BouncingScrollPhysics(),
@@ -67,61 +66,53 @@ class _OtpVerificationViewState extends State<OtpVerificationView> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    /// Heading
                     Text(
                       "OTP Verification",
-                      style: AppTextStyles.customText24(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+                      style: AppTextStyles.customText24(color: Colors.black, fontWeight: FontWeight.bold),
+                    ).animate().fadeIn(duration: 500.ms).slideX(begin: -0.2),
+
                     6.height,
+
+                    /// Subtitle
                     Text(
                       "Enter 4 digits code that has sent to your email ",
-                      style: AppTextStyles.customText14(
-                        color: AppColors.textColorBlackLight,
-                        fontWeight: FontWeight.normal,
-                        height: 1
-                      ),
-                    ),
+                      style: AppTextStyles.customText14(color: AppColors.textColorBlackLight, fontWeight: FontWeight.normal, height: 1),
+                    ).animate().fadeIn(duration: 600.ms).slideX(begin: 0.2),
+
                     Text(
                       "deanna.curtis@example.com",
-                      style: AppTextStyles.customText14(
-                        color: AppColors.black,
-                        fontWeight: FontWeight.w500,
-                        height: 1
-                      ),
-                    ),
+                      style: AppTextStyles.customText14(color: AppColors.black, fontWeight: FontWeight.w500, height: 1),
+                    ).animate().fadeIn(duration: 700.ms).slideX(begin: -0.2),
+
                     40.h.height,
 
-                    Center(child: customPinPut()),
+                    /// OTP Input (animated)
+                    Center(
+                      child: customPinPut().animate().fadeIn(duration: 800.ms).scale(begin: const Offset(0.9, 0.9), curve: Curves.easeOutBack),
+                    ),
 
                     20.h.height,
 
+                    /// Resend OTP
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          "Didn't receive?",
-                          style: AppTextStyles.customText14(
-                            color: Colors.black,
-                          ),
-                        ),
+                        Text("Didn't receive?", style: AppTextStyles.customText14(color: Colors.black)).animate().fadeIn(duration: 600.ms).slideX(begin: -0.1),
                         5.w.width,
                         GestureDetector(
                           onTap: () {},
                           child: Text(
                             'Resend OTP',
-                            style: AppTextStyles.customText14(
-                              color: AppColors.primary,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
+                            style: AppTextStyles.customText14(color: AppColors.primary, fontWeight: FontWeight.bold),
+                          ).animate().fadeIn(duration: 700.ms).slideX(begin: 0.1),
                         ),
                       ],
                     ),
 
                     40.h.height,
 
+                    /// Continue Button
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 40.w),
                       child: AppCustomButton(
@@ -130,12 +121,12 @@ class _OtpVerificationViewState extends State<OtpVerificationView> {
                         onPressed: () {
                           Get.toNamed(AppRoutes.setPasswordView);
                         },
-                      ),
+                      ).animate().fadeIn(duration: 900.ms).scale(begin: const Offset(0.95, 0.95)),
                     ),
                   ],
                 ),
               ),
-            ),
+            ).animate().fadeIn(duration: 600.ms).slideY(begin: 0.2),
           ),
         ],
       ),
@@ -150,9 +141,7 @@ class _OtpVerificationViewState extends State<OtpVerificationView> {
       length: 4,
       showCursor: true,
       onChanged: (value) {
-        setState(() {
-
-        });
+        setState(() {});
       },
       onCompleted: (pin) {},
       defaultPinTheme: PinTheme(
@@ -162,14 +151,18 @@ class _OtpVerificationViewState extends State<OtpVerificationView> {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20.sp),
           border: Border.all(color: AppColors.borderColorGrey, width: 1.0),
-          color: Colors.white, // Adjust background color here
+          color: Colors.white,
         ),
       ),
       focusedPinTheme: PinTheme(
         width: 64.sp,
         height: 64.sp,
         textStyle: TextStyle(fontSize: 30.sp, color: Colors.black),
-        decoration: BoxDecoration(borderRadius: BorderRadius.circular(20.sp), border: Border.all(color: AppColors.secondary, width: 1.0), color: Colors.white),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20.sp),
+          border: Border.all(color: AppColors.secondary, width: 1.0),
+          color: Colors.white,
+        ),
       ),
       submittedPinTheme: PinTheme(
         width: 64.sp,
@@ -185,7 +178,11 @@ class _OtpVerificationViewState extends State<OtpVerificationView> {
         width: 64.sp,
         height: 64.sp,
         textStyle: TextStyle(fontSize: 30.sp, color: Colors.red),
-        decoration: BoxDecoration(borderRadius: BorderRadius.circular(20.sp), border: Border.all(color: Colors.red, width: 1.sp), color: Colors.white),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20.sp),
+          border: Border.all(color: Colors.red, width: 1.sp),
+          color: Colors.white,
+        ),
       ),
     );
   }

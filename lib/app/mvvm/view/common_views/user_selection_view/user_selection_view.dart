@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -28,10 +29,7 @@ class _UserSelectionViewState extends State<UserSelectionView> {
         height: ScreenUtil().screenHeight,
         width: ScreenUtil().screenWidth,
         decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(AppAssets.getStartedBg),
-            fit: BoxFit.cover,
-          ),
+          image: DecorationImage(image: AssetImage(AppAssets.getStartedBg), fit: BoxFit.cover),
         ),
         child: SafeArea(
           child: SingleChildScrollView(
@@ -40,59 +38,62 @@ class _UserSelectionViewState extends State<UserSelectionView> {
               children: [
                 20.h.height,
 
+                // Heading Animation
                 Text(
                   AppStrings.userSelectionHeading,
-                  style: AppTextStyles.customText24(
-                    color: AppColors.darkGreyColor,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+                  style: AppTextStyles.customText24(color: AppColors.darkGreyColor, fontWeight: FontWeight.bold),
+                ).animate().fadeIn(duration: 600.ms).slideY(begin: -0.3, end: 0, curve: Curves.easeOut),
 
                 20.h.height,
 
+                // Donor Card
                 _buildGlassCard(
-                  icon: AppAssets.heartIcon,
-                  title: AppStrings.wantToDonateLabel,
-                  description: AppStrings.donateDescription,
-                  features: [
-                    "Anonymous donations for privacy",
-                    "Support verified recipients",
-                    "Track your impact and history",
-                    "Secure payment processing",
-                  ],
-                  buttonText: AppStrings.wantToDonateLabel,
-                  onPressed: () {
-                    GlobalVariables.userType = UserType.donor;
-                    Get.toNamed(AppRoutes.loginView);
-                  },
-                  isNeedy: false,
-                  isSelected: true,
-                  selectedBorderColor: AppColors.positiveGreen,
-                  selectedButtonColor: AppColors.lightGreenColor,
-                ),
+                      icon: AppAssets.heartIcon,
+                      title: AppStrings.wantToDonateLabel,
+                      description: AppStrings.donateDescription,
+                      features: [
+                        "Anonymous donations for privacy",
+                        "Support verified recipients",
+                        "Track your impact and history",
+                        "Secure payment processing",
+                      ],
+                      buttonText: AppStrings.wantToDonateLabel,
+                      onPressed: () {
+                        GlobalVariables.userType = UserType.donor;
+                        Get.toNamed(AppRoutes.loginView);
+                      },
+                      isNeedy: false,
+                      isSelected: true,
+                      selectedBorderColor: AppColors.positiveGreen,
+                      selectedButtonColor: AppColors.lightGreenColor,
+                    )
+                    .animate()
+                    .fadeIn(duration: 800.ms)
+                    .slideX(begin: -0.3, end: 0, curve: Curves.easeOut)
+                    .scale(begin: const Offset(0.95, 0.95), end: const Offset(1, 1)),
 
                 20.h.height,
 
+                // Needy Card
                 _buildGlassCard(
-                  icon: AppAssets.needyIcon,
-                  title: AppStrings.needHelpLabel,
-                  description: AppStrings.needyDescription,
-                  features: [
-                    "Create verified funding requests",
-                    "Secure identity verification",
-                    "Direct payouts to your account",
-                    "Track your progress",
-                  ],
-                  buttonText: AppStrings.needHelpLabel,
-                  onPressed: () {
-                    GlobalVariables.userType = UserType.needy;
-                    Get.toNamed(AppRoutes.loginView);
-                  },
-                  isNeedy: true,
-                  isSelected: false,
-                  selectedBorderColor: AppColors.positiveGreen,
-                  selectedButtonColor: AppColors.lightGreenColor,
-                ),
+                      icon: AppAssets.needyIcon,
+                      title: AppStrings.needHelpLabel,
+                      description: AppStrings.needyDescription,
+                      features: ["Create verified funding requests", "Secure identity verification", "Direct payouts to your account", "Track your progress"],
+                      buttonText: AppStrings.needHelpLabel,
+                      onPressed: () {
+                        GlobalVariables.userType = UserType.needy;
+                        Get.toNamed(AppRoutes.loginView);
+                      },
+                      isNeedy: true,
+                      isSelected: false,
+                      selectedBorderColor: AppColors.positiveGreen,
+                      selectedButtonColor: AppColors.lightGreenColor,
+                    )
+                    .animate()
+                    .fadeIn(duration: 900.ms)
+                    .slideX(begin: 0.3, end: 0, curve: Curves.easeOut)
+                    .scale(begin: const Offset(0.95, 0.95), end: const Offset(1, 1)),
               ],
             ).paddingSymmetric(horizontal: 16.w, vertical: 10.h),
           ),
@@ -113,13 +114,8 @@ class _UserSelectionViewState extends State<UserSelectionView> {
     Color selectedBorderColor = AppColors.primary,
     Color selectedButtonColor = AppColors.primary,
   }) {
-    final Color buttonBgColor = isSelected
-        ? selectedButtonColor
-        : Colors.transparent;
-
-    final Color buttonBorderColor = isSelected
-        ? selectedBorderColor
-        : AppColors.borderColorGrey;
+    final Color buttonBgColor = isSelected ? selectedButtonColor : Colors.transparent;
+    final Color buttonBorderColor = isSelected ? selectedBorderColor : AppColors.borderColorGrey;
 
     return ClipRRect(
       borderRadius: BorderRadius.circular(16.r),
@@ -132,38 +128,26 @@ class _UserSelectionViewState extends State<UserSelectionView> {
             color: Colors.white.withOpacity(0.6),
             borderRadius: BorderRadius.circular(16.r),
             border: Border.all(color: AppColors.borderColorGrey),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.05),
-                blurRadius: 10,
-                offset: const Offset(0, 4),
-              ),
-            ],
+            boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 10, offset: const Offset(0, 4))],
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Image.asset(icon, width: 60.w, height: 60.h),
+              Image.asset(icon, width: 60.w, height: 60.h).animate().fadeIn(duration: 500.ms).scale(begin: const Offset(0.8, 0.8), end: const Offset(1, 1)),
 
               12.h.height,
 
               Text(
                 title,
-                style: AppTextStyles.customText24(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+                style: AppTextStyles.customText24(color: Colors.black, fontWeight: FontWeight.bold),
+              ).animate().fadeIn(duration: 600.ms),
 
               4.h.height,
 
               Text(
                 description,
-                style: AppTextStyles.customText14(
-                  color: AppColors.textColorBlackLight,
-                  fontWeight: FontWeight.normal,
-                ),
-              ),
+                style: AppTextStyles.customText14(color: AppColors.textColorBlackLight, fontWeight: FontWeight.normal),
+              ).animate().fadeIn(duration: 700.ms),
 
               12.h.height,
 
@@ -173,19 +157,13 @@ class _UserSelectionViewState extends State<UserSelectionView> {
                     .map(
                       (e) => Row(
                         children: [
-                          isNeedy
-                              ? SvgPicture.asset(AppAssets.bulletGrey)
-                              : SvgPicture.asset(AppAssets.bulletGreen),
+                          isNeedy ? SvgPicture.asset(AppAssets.bulletGrey) : SvgPicture.asset(AppAssets.bulletGreen),
                           6.horizontalSpace,
                           Expanded(
                             child: Text(
                               e,
-                              style: AppTextStyles.customText14(
-                                color: Colors.black,
-                                height: 1.8,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
+                              style: AppTextStyles.customText14(color: Colors.black, height: 1.8, fontWeight: FontWeight.w400),
+                            ).animate().fadeIn(duration: 800.ms),
                           ),
                         ],
                       ),
@@ -194,19 +172,17 @@ class _UserSelectionViewState extends State<UserSelectionView> {
               ),
 
               16.h.height,
+
               AppCustomButton(
                 title: buttonText,
                 onPressed: onPressed,
                 bgColor: buttonBgColor,
                 borderColor: buttonBorderColor,
-                textStyle: AppTextStyles.customText14(
-                  color: AppColors.black,
-                  fontWeight: FontWeight.w500,
-                ),
+                textStyle: AppTextStyles.customText14(color: AppColors.black, fontWeight: FontWeight.w500),
                 width: 190.w,
                 height: 50.h,
                 borderRadius: 8.r,
-              ),
+              ).animate().fadeIn(duration: 900.ms).scale(),
             ],
           ),
         ),

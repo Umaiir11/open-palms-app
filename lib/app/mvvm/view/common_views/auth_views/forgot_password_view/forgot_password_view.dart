@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:open_palms/app/config/app_assets.dart';
 import 'package:open_palms/app/config/app_routes.dart';
 import 'package:open_palms/app/config/app_strings.dart';
@@ -26,23 +27,30 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
       backgroundColor: AppColors.primary,
       body: Column(
         children: [
+          /// Back Button
           Align(
             alignment: Alignment.topLeft,
             child: Padding(
               padding: EdgeInsets.only(top: 50.h, left: 20.w),
-              child: GestureDetector(onTap: () => Get.back(), child: SvgPicture.asset(AppAssets.whiteBackButton)),
+              child: GestureDetector(
+                onTap: () => Get.back(),
+                child: SvgPicture.asset(AppAssets.whiteBackButton),
+              ).animate().fadeIn(duration: 600.ms).slideX(begin: -0.3, curve: Curves.easeOut),
             ),
           ),
+
+          /// Title
           Center(
             child: Text(
               'Forgot Password',
               style: AppTextStyles.customText28(color: Colors.white, fontWeight: FontWeight.w700),
               textAlign: TextAlign.center,
-            ),
+            ).animate().fadeIn(duration: 700.ms).slideY(begin: -0.2, curve: Curves.easeOut),
           ),
 
           14.h.height,
 
+          /// White Container Section
           Expanded(
             child: Container(
               width: double.infinity,
@@ -57,21 +65,33 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    /// Heading
                     Text(
                       "Forgot Password?",
                       style: AppTextStyles.customText24(color: Colors.black, fontWeight: FontWeight.bold),
-                    ),
+                    ).animate().fadeIn(duration: 500.ms).slideX(begin: -0.2),
+
                     6.height,
+
+                    /// Subtitle
                     Text(
                       "Enter your registered Email address for\nverification.",
                       style: AppTextStyles.customText14(color: AppColors.textColorBlackLight, fontWeight: FontWeight.normal),
-                    ),
+                    ).animate().fadeIn(duration: 600.ms).slideX(begin: 0.2),
+
                     36.height,
 
                     /// Email Field
-                    AppCustomField(labelTitle: "Email Address", labelColor: AppColors.textColorBlackLight, hintText: "Enter your email", isRequired: false),
+                    AppCustomField(
+                      labelTitle: "Email Address",
+                      labelColor: AppColors.textColorBlackLight,
+                      hintText: "Enter your email",
+                      isRequired: false,
+                    ).animate().fadeIn(duration: 700.ms).slideY(begin: 0.2),
+
                     70.h.height,
 
+                    /// Send Button
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 40.w),
                       child: AppCustomButton(
@@ -80,13 +100,14 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
                         onPressed: () {
                           Get.toNamed(AppRoutes.otpVerificationView);
                         },
-                      ),
+                      ).animate().fadeIn(duration: 800.ms).scale(begin: const Offset(0.9, 0.9)),
                     ),
+
                     30.h.height,
                   ],
                 ),
               ),
-            ),
+            ).animate().fadeIn(duration: 600.ms, curve: Curves.easeIn).slideY(begin: 0.2),
           ),
         ],
       ),

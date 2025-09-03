@@ -18,8 +18,7 @@ class SelfieVerificationView extends StatefulWidget {
   State<SelfieVerificationView> createState() => _SelfieVerificationViewState();
 }
 
-class _SelfieVerificationViewState extends State<SelfieVerificationView>
-    with WidgetsBindingObserver {
+class _SelfieVerificationViewState extends State<SelfieVerificationView> with WidgetsBindingObserver {
   CameraController? _cameraController;
   List<CameraDescription>? _cameras;
   bool _isCameraInitialized = false;
@@ -74,17 +73,9 @@ class _SelfieVerificationViewState extends State<SelfieVerificationView>
       _cameras = await availableCameras();
       if (_cameras!.isNotEmpty) {
         // Use front camera for selfie
-        final frontCamera = _cameras!.firstWhere(
-          (camera) => camera.lensDirection == CameraLensDirection.front,
-          orElse: () => _cameras!.first,
-        );
+        final frontCamera = _cameras!.firstWhere((camera) => camera.lensDirection == CameraLensDirection.front, orElse: () => _cameras!.first);
 
-        _cameraController = CameraController(
-          frontCamera,
-          ResolutionPreset.high,
-          enableAudio: false,
-          imageFormatGroup: ImageFormatGroup.jpeg,
-        );
+        _cameraController = CameraController(frontCamera, ResolutionPreset.high, enableAudio: false, imageFormatGroup: ImageFormatGroup.jpeg);
 
         await _cameraController!.initialize();
         if (mounted) {
@@ -102,9 +93,7 @@ class _SelfieVerificationViewState extends State<SelfieVerificationView>
   }
 
   Future<void> _takePicture() async {
-    if (_cameraController != null &&
-        _cameraController!.value.isInitialized &&
-        !_isCapturing) {
+    if (_cameraController != null && _cameraController!.value.isInitialized && !_isCapturing) {
       try {
         setState(() {
           _isCapturing = true;
@@ -114,13 +103,9 @@ class _SelfieVerificationViewState extends State<SelfieVerificationView>
 
         // Show success feedback
         if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('Selfie captured successfully!'),
-              backgroundColor: Colors.green,
-              duration: Duration(seconds: 2),
-            ),
-          );
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(const SnackBar(content: Text('Selfie captured successfully!'), backgroundColor: Colors.green, duration: Duration(seconds: 2)));
           // Get.toNamed(AppRoutes.kinDetailView);
         }
 
@@ -128,15 +113,10 @@ class _SelfieVerificationViewState extends State<SelfieVerificationView>
         print('Picture taken: ${image.path}');
 
         // You can navigate to next screen or process the image
-        Get.toNamed(AppRoutes.loginView);
+        Get.offAllNamed(AppRoutes.userSelectionView);
       } catch (e) {
         if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text('Error taking picture: ${e.toString()}'),
-              backgroundColor: Colors.red,
-            ),
-          );
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error taking picture: ${e.toString()}'), backgroundColor: Colors.red));
         }
       } finally {
         setState(() {
@@ -165,29 +145,17 @@ class _SelfieVerificationViewState extends State<SelfieVerificationView>
   Widget _buildPermissionDeniedView() {
     return Container(
       decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [Color(0xFF2C3E50), Color(0xFF34495E)],
-        ),
+        gradient: LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [Color(0xFF2C3E50), Color(0xFF34495E)]),
       ),
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Icon(
-              Icons.camera_alt_outlined,
-              size: 64,
-              color: Colors.white54,
-            ),
+            const Icon(Icons.camera_alt_outlined, size: 64, color: Colors.white54),
             16.h.height,
             const Text(
               'Camera Permission Required',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
-              ),
+              style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w600),
             ),
             8.h.height,
             const Text(
@@ -198,10 +166,7 @@ class _SelfieVerificationViewState extends State<SelfieVerificationView>
             24.h.height,
             ElevatedButton(
               onPressed: _requestCameraPermission,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFFFFC107),
-                foregroundColor: Colors.black,
-              ),
+              style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFFFFC107), foregroundColor: Colors.black),
               child: const Text('Grant Permission'),
             ),
           ],
@@ -213,11 +178,7 @@ class _SelfieVerificationViewState extends State<SelfieVerificationView>
   Widget _buildErrorView() {
     return Container(
       decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [Color(0xFF2C3E50), Color(0xFF34495E)],
-        ),
+        gradient: LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [Color(0xFF2C3E50), Color(0xFF34495E)]),
       ),
       child: Center(
         child: Column(
@@ -233,10 +194,7 @@ class _SelfieVerificationViewState extends State<SelfieVerificationView>
             24.h.height,
             ElevatedButton(
               onPressed: _initializeCamera,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFFFFC107),
-                foregroundColor: Colors.black,
-              ),
+              style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFFFFC107), foregroundColor: Colors.black),
               child: const Text('Retry'),
             ),
           ],
@@ -248,11 +206,7 @@ class _SelfieVerificationViewState extends State<SelfieVerificationView>
   Widget _buildLoadingView() {
     return Container(
       decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [Color(0xFF2C3E50), Color(0xFF34495E)],
-        ),
+        gradient: LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [Color(0xFF2C3E50), Color(0xFF34495E)]),
       ),
       child: const Center(
         child: Column(
@@ -260,10 +214,7 @@ class _SelfieVerificationViewState extends State<SelfieVerificationView>
           children: [
             CircularProgressIndicator(color: Color(0xFFFFC107)),
             SizedBox(height: 16),
-            Text(
-              'Initializing Camera...',
-              style: TextStyle(color: Colors.white, fontSize: 16),
-            ),
+            Text('Initializing Camera...', style: TextStyle(color: Colors.white, fontSize: 16)),
           ],
         ),
       ),
@@ -295,45 +246,29 @@ class _SelfieVerificationViewState extends State<SelfieVerificationView>
                   // Camera preview background
                   Positioned.fill(child: _buildCameraPreview()),
 
-                  if (_isCameraInitialized &&
-                      _isPermissionGranted &&
-                      _errorMessage == null)
-                    Container(color: Colors.black.withOpacity(0.6)),
+                  if (_isCameraInitialized && _isPermissionGranted && _errorMessage == null) Container(color: Colors.black.withOpacity(0.6)),
 
                   // Face outline overlay (only when camera is working)
-                  if (_isCameraInitialized &&
-                      _isPermissionGranted &&
-                      _errorMessage == null)
-                    Positioned.fill(child: CustomPaint()),
+                  if (_isCameraInitialized && _isPermissionGranted && _errorMessage == null) Positioned.fill(child: CustomPaint()),
                 ],
               ),
             ),
           ),
 
           // Dark overlay for entire screen
-          if (_isCameraInitialized &&
-              _isPermissionGranted &&
-              _errorMessage == null)
+          if (_isCameraInitialized && _isPermissionGranted && _errorMessage == null)
             // Positioned.fill(
             //
             //   child: Container(color: Colors.black.withOpacity(0.6)),
             // ),
             // Clear camera preview area (face cutout)
-            if (_isCameraInitialized &&
-                _isPermissionGranted &&
-                _errorMessage == null)
+            if (_isCameraInitialized && _isPermissionGranted && _errorMessage == null)
               Positioned.fill(
-                child: ClipPath(
-                  clipper: FaceAreaClipper(),
-                  child: _buildCameraPreview(),
-                ),
+                child: ClipPath(clipper: FaceAreaClipper(), child: _buildCameraPreview()),
               ),
 
           // Face outline border
-          if (_isCameraInitialized &&
-              _isPermissionGranted &&
-              _errorMessage == null)
-            Positioned.fill(child: CustomPaint(size: screenSize)),
+          if (_isCameraInitialized && _isPermissionGranted && _errorMessage == null) Positioned.fill(child: CustomPaint(size: screenSize)),
 
           // Header section
           Positioned(
@@ -341,36 +276,21 @@ class _SelfieVerificationViewState extends State<SelfieVerificationView>
             left: 0,
             right: 0,
             child: Container(
-              padding: const EdgeInsets.only(
-                top: 50,
-                left: 24,
-                right: 24,
-                bottom: 20,
-              ),
+              padding: const EdgeInsets.only(top: 50, left: 24, right: 24, bottom: 20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  GestureDetector(
-                    onTap: () => Get.back(),
-                    child: SvgPicture.asset(AppAssets.whiteBackButton),
-                  ),
+                  GestureDetector(onTap: () => Get.back(), child: SvgPicture.asset(AppAssets.whiteBackButton)),
                   12.h.height,
                   Text(
                     'Selfie Verification',
-                    style: AppTextStyles.customText24(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w600,
-                    ),
+                    style: AppTextStyles.customText24(color: Colors.white, fontWeight: FontWeight.w600),
                   ),
                   4.h.height,
                   // Subtitle
                   Text(
                     'Complete the form and join Donate',
-                    style: AppTextStyles.customText14(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w400,
-                      height: 1,
-                    ),
+                    style: AppTextStyles.customText14(color: Colors.white, fontWeight: FontWeight.w400, height: 1),
                   ),
                 ],
               ),
@@ -385,12 +305,7 @@ class _SelfieVerificationViewState extends State<SelfieVerificationView>
             child: Column(
               children: [
                 GestureDetector(
-                  onTap:
-                      _isCameraInitialized &&
-                          _isPermissionGranted &&
-                          !_isCapturing
-                      ? _takePicture
-                      : null,
+                  onTap: _isCameraInitialized && _isPermissionGranted && !_isCapturing ? _takePicture : null,
                   child: SvgPicture.asset(AppAssets.cameraIcon),
                 ),
                 const SizedBox(height: 16),
@@ -399,11 +314,7 @@ class _SelfieVerificationViewState extends State<SelfieVerificationView>
                       ? "Center your face to the screen and\npress the camera button"
                       : "Please allow camera access to continue",
                   textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400,
-                  ),
+                  style: const TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w400),
                 ),
               ],
             ),
@@ -421,10 +332,8 @@ class FaceAreaClipper extends CustomClipper<Path> {
     final baseWidth = 375;
     final baseHeight = 709;
 
-    final scaleX =
-        (size.width / baseWidth) * 0.93; // Increased from 0.8 → wider
-    final scaleY =
-        (size.height / baseHeight) * 0.78; // Increased from 0.65 → taller
+    final scaleX = (size.width / baseWidth) * 0.93; // Increased from 0.8 → wider
+    final scaleY = (size.height / baseHeight) * 0.78; // Increased from 0.65 → taller
 
     final offsetX = (size.width - baseWidth * scaleX) / 2;
     final offsetY = size.height * 0.16; // small upward adjust
@@ -433,12 +342,7 @@ class FaceAreaClipper extends CustomClipper<Path> {
     return facePath;
   }
 
-  Path _buildFacePath(
-    double scaleX,
-    double scaleY,
-    double offsetX,
-    double offsetY,
-  ) {
+  Path _buildFacePath(double scaleX, double scaleY, double offsetX, double offsetY) {
     final facePath = Path();
 
     final startX = 187.155 * scaleX + offsetX;

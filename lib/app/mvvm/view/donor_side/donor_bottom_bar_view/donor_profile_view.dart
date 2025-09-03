@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:open_palms/app/config/app_colors.dart';
 import 'package:open_palms/app/config/app_strings.dart';
 import 'package:open_palms/app/config/global_variables.dart';
@@ -37,7 +38,7 @@ class _DonorProfileViewState extends State<DonorProfileView> {
         backgroundColor: Colors.transparent,
         leading: GlobalVariables.userType == UserType.needy ? null : SizedBox.shrink(),
         leadingWidth: GlobalVariables.userType == UserType.needy ? null : 10.w,
-      ),
+      ), // 👈 AppBar animation
       body: SafeArea(
         child: SingleChildScrollView(
           physics: BouncingScrollPhysics(),
@@ -45,6 +46,7 @@ class _DonorProfileViewState extends State<DonorProfileView> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // Profile Card
               Container(
                 width: double.infinity,
                 padding: EdgeInsets.all(12.w),
@@ -173,14 +175,7 @@ class _DonorProfileViewState extends State<DonorProfileView> {
                                     overlayColor: AppColors.primary,
                                     overlayShape: RoundSliderOverlayShape(overlayRadius: 20.0),
                                   ),
-                                  child: Slider(
-                                    padding: EdgeInsets.zero,
-                                    value: badgeValue ?? 0.0,
-                                    min: 0.0,
-                                    max: 10.0,
-                                    divisions: 100,
-                                    onChanged: (double value) {},
-                                  ),
+                                  child: Slider(padding: EdgeInsets.zero, value: badgeValue, min: 0.0, max: 10.0, divisions: 100, onChanged: (double value) {}),
                                 ),
                               ],
                             ).paddingFromAll(10.sp),
@@ -190,15 +185,18 @@ class _DonorProfileViewState extends State<DonorProfileView> {
                     ],
                   ],
                 ),
-              ),
+              ).animate().fadeIn(duration: 600.ms).slideY(begin: 0.2, end: 0), // 👈 Profile card animation
+
               25.h.height,
 
               Text(
                 "Other setting",
                 style: AppTextStyles.customText16(color: AppColors.grey, fontWeight: FontWeight.w600),
-              ),
+              ).animate().fadeIn(duration: 500.ms, delay: 200.ms).slideX(begin: -0.2, end: 0), // 👈 Section heading animation
+
               15.h.height,
 
+              // Settings container
               Container(
                 width: double.infinity,
                 padding: EdgeInsets.all(13.w),
@@ -207,116 +205,92 @@ class _DonorProfileViewState extends State<DonorProfileView> {
                   borderRadius: BorderRadius.circular(12.r),
                   boxShadow: [BoxShadow(color: Colors.grey.withOpacity(0.1), spreadRadius: 2, blurRadius: 5, offset: const Offset(0, 3))],
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    _settingsTile(
-                      leading: Image.asset(AppAssets.notificationIc, height: 43.h, width: 43.w),
-                      title: "Notifications",
-                      trailing: Container(
-                        width: 40.w,
-                        alignment: Alignment.centerRight,
-                        child: Transform.scale(
-                          scale: 0.7,
-                          child: Switch(
-                            value: notificationEnabled,
-                            activeColor: AppColors.primary,
-                            inactiveThumbColor: AppColors.secondary,
-                            inactiveTrackColor: Color(0xFFF3F3F7),
-                            trackOutlineColor: WidgetStateProperty.all(Colors.transparent),
-                            onChanged: (val) {
-                              setState(() {
-                                notificationEnabled = val;
-                              });
-                            },
-                          ),
-                        ),
-                      ),
-                      onTap: () {},
-                    ),
-
-                    6.h.height,
-                    if (GlobalVariables.userType == UserType.donor) ...[
-                      6.h.height,
-                      SvgPicture.asset(AppAssets.settingTileDivider).paddingHorizontal(4.w),
-                      _settingsTile(
-                        leading: SvgPicture.asset(AppAssets.subscriptionIcon, height: 43.h, width: 43.w),
-                        title: "Subscription",
-                        trailing: Icon(Icons.arrow_forward_ios, size: 16.sp),
-                        onTap: () {
-                          Get.toNamed(AppRoutes.subscriptionView);
-                        },
-                      ),
-
-                      6.h.height,
-                    ],
-
-                    SvgPicture.asset(AppAssets.settingTileDivider).paddingHorizontal(4.w),
-
-                    6.h.height,
-
-                    _settingsTile(
-                      leading: Image.asset(AppAssets.aboutUsIcon, height: 43.h, width: 43.w),
-                      title: "About Us",
-                      trailing: Icon(Icons.arrow_forward_ios, size: 16.sp),
-                      onTap: () {
-                        Get.toNamed(AppRoutes.aboutUsView);
-                      },
-                    ),
-
-                    6.h.height,
-
-                    SvgPicture.asset(AppAssets.settingTileDivider).paddingHorizontal(4.w),
-
-                    6.h.height,
-
-                    _settingsTile(
-                      leading: Image.asset(AppAssets.privacyIcon, height: 43.h, width: 43.w),
-                      title: "Privacy Policy",
-                      trailing: Icon(Icons.arrow_forward_ios, size: 16.sp),
-                      onTap: () {
-                        Get.toNamed(AppRoutes.privacyPolicyView);
-                      },
-                    ),
-
-                    6.h.height,
-
-                    SvgPicture.asset(AppAssets.settingTileDivider).paddingHorizontal(4.w),
-
-                    6.h.height,
-
-                    _settingsTile(
-                      leading: Image.asset(AppAssets.signOutIcon, height: 43.h, width: 43.w),
-                      title: "Sign out",
-                      trailing: SizedBox.shrink(),
-                      onTap: () {
-                        Utils.showBottomSheet(context: context, child: LogoutSheet());
-                      },
-                    ),
-
-                    6.h.height,
-
-                    SvgPicture.asset(AppAssets.settingTileDivider).paddingHorizontal(4.w),
-
-                    6.h.height,
-
-                    _settingsTile(
-                      leading: Image.asset(AppAssets.deleteIcon, height: 43.h, width: 43.w),
-                      title: "Delete account",
-                      titleColor: Colors.red,
-                      trailing: const SizedBox(),
-                      onTap: () {
-                        Utils.showBottomSheet(context: context, child: DeleteAccountSheet());
-                      },
-                    ),
-                  ],
-                ),
+                child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [..._animatedSettingsTiles(context)]),
               ),
             ],
           ),
         ),
       ),
     );
+  }
+
+  /// Animated list of setting tiles
+  List<Widget> _animatedSettingsTiles(BuildContext context) {
+    final tiles = <Widget>[
+      _settingsTile(
+        leading: Image.asset(AppAssets.notificationIc, height: 43.h, width: 43.w),
+        title: "Notifications",
+        trailing: Container(
+          width: 40.w,
+          alignment: Alignment.centerRight,
+          child: Transform.scale(
+            scale: 0.7,
+            child: Switch(
+              value: notificationEnabled,
+              activeColor: AppColors.primary,
+              inactiveThumbColor: AppColors.secondary,
+              inactiveTrackColor: Color(0xFFF3F3F7),
+              trackOutlineColor: WidgetStateProperty.all(Colors.transparent),
+              onChanged: (val) {
+                setState(() {
+                  notificationEnabled = val;
+                });
+              },
+            ),
+          ),
+        ),
+        onTap: () {},
+      ),
+      if (GlobalVariables.userType == UserType.donor)
+        _settingsTile(
+          leading: SvgPicture.asset(AppAssets.subscriptionIcon, height: 43.h, width: 43.w),
+          title: "Subscription",
+          trailing: Icon(Icons.arrow_forward_ios, size: 16.sp),
+          onTap: () {
+            Get.toNamed(AppRoutes.subscriptionView);
+          },
+        ),
+      _settingsTile(
+        leading: Image.asset(AppAssets.aboutUsIcon, height: 43.h, width: 43.w),
+        title: "About Us",
+        trailing: Icon(Icons.arrow_forward_ios, size: 16.sp),
+        onTap: () {
+          Get.toNamed(AppRoutes.aboutUsView);
+        },
+      ),
+      _settingsTile(
+        leading: Image.asset(AppAssets.privacyIcon, height: 43.h, width: 43.w),
+        title: "Privacy Policy",
+        trailing: Icon(Icons.arrow_forward_ios, size: 16.sp),
+        onTap: () {
+          Get.toNamed(AppRoutes.privacyPolicyView);
+        },
+      ),
+      _settingsTile(
+        leading: Image.asset(AppAssets.signOutIcon, height: 43.h, width: 43.w),
+        title: "Sign out",
+        trailing: SizedBox.shrink(),
+        onTap: () {
+          Utils.showBottomSheet(context: context, child: LogoutSheet());
+        },
+      ),
+      _settingsTile(
+        leading: Image.asset(AppAssets.deleteIcon, height: 43.h, width: 43.w),
+        title: "Delete account",
+        titleColor: Colors.red,
+        trailing: const SizedBox(),
+        onTap: () {
+          Utils.showBottomSheet(context: context, child: DeleteAccountSheet());
+        },
+      ),
+    ];
+
+    // Animate each tile with stagger
+    return tiles.asMap().entries.map((entry) {
+      final index = entry.key;
+      final tile = entry.value;
+      return tile.animate().fadeIn(duration: 500.ms, delay: (index * 150).ms).slideX(begin: 0.1, end: 0);
+    }).toList();
   }
 
   Widget _settingsTile({

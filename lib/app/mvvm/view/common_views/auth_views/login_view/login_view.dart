@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -36,16 +37,14 @@ class _LoginViewState extends State<LoginView> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Back Button
               GestureDetector(onTap: () => Get.back(), child: SvgPicture.asset(AppAssets.whiteBackButton)),
 
-              // Welcome Text Section
               Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
                     "Welcome",
-                    style: AppTextStyles.customText28(color: Color(0xFF94E941), fontWeight: FontWeight.bold, height: 1),
+                    style: AppTextStyles.customText28(color: const Color(0xFF94E941), fontWeight: FontWeight.bold, height: 1),
                   ),
                   4.height,
                   Text(
@@ -61,7 +60,8 @@ class _LoginViewState extends State<LoginView> {
               ).paddingTop(10.h),
               SvgPicture.asset(AppAssets.whiteBackButton, color: Colors.transparent),
             ],
-          ).paddingTop(50.h).paddingHorizontal(15.w),
+          ).paddingTop(50.h).paddingHorizontal(15.w).animate().fadeIn(duration: 600.ms).slideY(begin: -0.3, end: 0, curve: Curves.easeOut),
+
           20.h.height,
 
           /// White rounded container
@@ -70,27 +70,35 @@ class _LoginViewState extends State<LoginView> {
               width: double.infinity,
               margin: EdgeInsets.symmetric(horizontal: 10.w),
               decoration: BoxDecoration(
-                color: AppColors.white, // white container
+                color: AppColors.white,
                 borderRadius: BorderRadius.only(topLeft: Radius.circular(14.r), topRight: Radius.circular(14.r)),
               ),
               child: SingleChildScrollView(
-                physics: BouncingScrollPhysics(),
+                physics: const BouncingScrollPhysics(),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       GlobalVariables.userType == UserType.donor ? AppStrings.wantToDonateLabel : "I Want Help",
                       style: AppTextStyles.customText28(color: Colors.black, fontWeight: FontWeight.bold),
-                    ),
+                    ).animate().fadeIn(duration: 500.ms).slideX(begin: -0.2, curve: Curves.easeOut),
+
                     3.height,
                     Text(
                       "Make a difference by supporting verified\nrecipients in need",
-                      style: AppTextStyles.customText14(color: Color(0xff979797), fontWeight: FontWeight.w400),
-                    ),
+                      style: AppTextStyles.customText14(color: const Color(0xff979797), fontWeight: FontWeight.w400),
+                    ).animate(delay: 200.ms).fadeIn(duration: 500.ms).slideX(begin: 0.2, curve: Curves.easeOut),
+
                     30.height,
 
                     /// Email Field
-                    AppCustomField(labelTitle: "Email Address", labelColor: AppColors.textColorBlackLight, hintText: "Enter your email", isRequired: false),
+                    AppCustomField(
+                      labelTitle: "Email Address",
+                      labelColor: AppColors.textColorBlackLight,
+                      hintText: "Enter your email",
+                      isRequired: false,
+                    ).animate(delay: 400.ms).fadeIn(duration: 500.ms).slideY(begin: 0.2, curve: Curves.easeOut),
+
                     20.height,
 
                     /// Password Field
@@ -107,7 +115,8 @@ class _LoginViewState extends State<LoginView> {
                           onPressed: authController.togglePassword,
                         ),
                       ),
-                    ),
+                    ).animate(delay: 600.ms).fadeIn(duration: 500.ms).slideY(begin: 0.2, curve: Curves.easeOut),
+
                     14.height,
 
                     Align(
@@ -118,7 +127,8 @@ class _LoginViewState extends State<LoginView> {
                         },
                         child: Text("Forgot Password?", style: AppTextStyles.customText14(color: Colors.black)),
                       ),
-                    ),
+                    ).animate(delay: 700.ms).fadeIn(duration: 500.ms),
+
                     32.height,
 
                     /// Sign In Button
@@ -135,7 +145,8 @@ class _LoginViewState extends State<LoginView> {
                           }
                         },
                       ),
-                    ),
+                    ).animate(delay: 900.ms).fadeIn(duration: 500.ms).scale(begin: const Offset(0.8, 0.8), curve: Curves.easeOutBack),
+
                     32.h.height,
 
                     /// Or Continue With
@@ -144,14 +155,19 @@ class _LoginViewState extends State<LoginView> {
                       children: [
                         Text(
                           "OR CONTINUE WITH",
-                          style: AppTextStyles.customTextFigtree(color: Color(0xffCDCDCD), fontWeight: FontWeight.w500, fontSize: 18),
+                          style: AppTextStyles.customTextFigtree(color: const Color(0xffCDCDCD), fontWeight: FontWeight.w500, fontSize: 18),
                         ),
                       ],
-                    ),
+                    ).animate(delay: 1100.ms).fadeIn(duration: 500.ms),
+
                     32.h.height,
 
-                    /// Social Buttons (Google + Apple)
-                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [_socialIcon(AppAssets.googleLogo), 20.width, _socialIcon(AppAssets.appleLogo)]),
+                    /// Social Buttons
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [_socialIcon(AppAssets.googleLogo), 20.width, _socialIcon(AppAssets.appleLogo)],
+                    ).animate(delay: 1300.ms).fadeIn(duration: 500.ms).scale(begin: const Offset(0.7, 0.7), curve: Curves.easeOutBack),
+
                     30.h.height,
 
                     /// Bottom Sign Up
@@ -171,11 +187,11 @@ class _LoginViewState extends State<LoginView> {
                           ),
                         ),
                       ],
-                    ),
+                    ).animate(delay: 1500.ms).fadeIn(duration: 600.ms).slideY(begin: 0.2, curve: Curves.easeOut),
                   ],
                 ),
               ).paddingHorizontal(15.w).paddingTop(20.h),
-            ),
+            ).animate().fadeIn(duration: 700.ms).slideY(begin: 0.3, end: 0, curve: Curves.easeOut),
           ),
         ],
       ),
