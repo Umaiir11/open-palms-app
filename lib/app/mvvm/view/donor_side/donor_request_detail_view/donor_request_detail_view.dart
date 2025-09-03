@@ -128,6 +128,18 @@ class _DonorRequestDetailViewState extends State<DonorRequestDetailView> {
                   style: AppTextStyles.customText18(color: Colors.black, fontWeight: FontWeight.w600, height: 1.2),
                 ),
               ).paddingRight(100.w),
+              status == 'history'
+                  ? Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text("Date: ", style: AppTextStyles.customText14(color: AppColors.textLightBlack)),
+                        Text(
+                          '29 Aug 2025',
+                          style: AppTextStyles.customText16(color: AppColors.black, fontWeight: FontWeight.w500),
+                        ),
+                      ],
+                    )
+                  : SizedBox.shrink(),
               15.h.height,
               Container(
                 decoration: BoxDecoration(

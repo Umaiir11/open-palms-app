@@ -72,152 +72,154 @@ class _IdentityVerifyViewState extends State<IdentityVerifyView> {
                 color: AppColors.white,
                 borderRadius: BorderRadius.only(topLeft: Radius.circular(14.r), topRight: Radius.circular(14.r)),
               ),
-              child: SingleChildScrollView(
-                physics: const BouncingScrollPhysics(),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    /// ID Selection Tiles
-                    _buildAnimatedTile(
+              child: SafeArea(
+                child: SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      /// ID Selection Tiles
+                      _buildAnimatedTile(
+                        Obx(() {
+                          return GestureDetector(
+                            onTap: () => controller.imageType.value = 'national',
+                            child: _buildTile(AppAssets.idIcon, "National ID", AppAssets.tickIcon, isVerified: controller.imageType.value == 'national'),
+                          );
+                        }),
+                        delay: 200,
+                      ),
+
+                      _divider(),
+
+                      _buildAnimatedTile(
+                        Obx(() {
+                          return GestureDetector(
+                            onTap: () => controller.imageType.value = 'passport',
+                            child: _buildTile(AppAssets.passportIcon, "Passport", AppAssets.tickIcon, isVerified: controller.imageType.value == 'passport'),
+                          );
+                        }),
+                        delay: 300,
+                      ),
+
+                      _divider(),
+
+                      _buildAnimatedTile(
+                        Obx(() {
+                          return GestureDetector(
+                            onTap: () => controller.imageType.value = 'license',
+                            child: _buildTile(AppAssets.licenseIcon, "License", AppAssets.tickIcon, isVerified: controller.imageType.value == 'license'),
+                          );
+                        }),
+                        delay: 400,
+                      ),
+
+                      _divider(),
+
+                      /// Conditional Upload Sections
                       Obx(() {
-                        return GestureDetector(
-                          onTap: () => controller.imageType.value = 'national',
-                          child: _buildTile(AppAssets.idIcon, "National ID", AppAssets.tickIcon, isVerified: controller.imageType.value == 'national'),
-                        );
+                        if (controller.imageType.value == 'national') {
+                          return Column(
+                            children: [
+                              _animateUploadSection(
+                                controller.nationalIdFront.value,
+                                "Front Side",
+                                () => controller.nationalIdFront.value = null,
+                                onPick: () {
+                                  Utils.showPickImageOptionsDialog(
+                                    context,
+                                    onCameraTap: () {
+                                      Get.back();
+                                      controller.pickImageFromCamera(file: controller.nationalIdFront);
+                                    },
+                                    onGalleryTap: () {
+                                      Get.back();
+                                      controller.pickImageFromGallery(file: controller.nationalIdFront);
+                                    },
+                                  );
+                                },
+                                delay: 500,
+                              ),
+                              _animateUploadSection(
+                                controller.nationalIdBack.value,
+                                "Back Side",
+                                () => controller.nationalIdBack.value = null,
+                                onPick: () {
+                                  Utils.showPickImageOptionsDialog(
+                                    context,
+                                    onCameraTap: () {
+                                      Get.back();
+                                      controller.pickImageFromCamera(file: controller.nationalIdBack);
+                                    },
+                                    onGalleryTap: () {
+                                      Get.back();
+                                      controller.pickImageFromGallery(file: controller.nationalIdBack);
+                                    },
+                                  );
+                                },
+                                delay: 600,
+                              ),
+                            ],
+                          ).paddingTop(10.h);
+                        } else if (controller.imageType.value == 'passport') {
+                          return _animateUploadSection(
+                            controller.passportImage.value,
+                            "Passport",
+                            () => controller.passportImage.value = null,
+                            onPick: () {
+                              Utils.showPickImageOptionsDialog(
+                                context,
+                                onCameraTap: () {
+                                  Get.back();
+                                  controller.pickImageFromCamera(file: controller.passportImage);
+                                },
+                                onGalleryTap: () {
+                                  Get.back();
+                                  controller.pickImageFromGallery(file: controller.passportImage);
+                                },
+                              );
+                            },
+                            delay: 500,
+                          ).paddingTop(10.h);
+                        } else if (controller.imageType.value == 'license') {
+                          return _animateUploadSection(
+                            controller.licenseImage.value,
+                            "License",
+                            () => controller.licenseImage.value = null,
+                            onPick: () {
+                              Utils.showPickImageOptionsDialog(
+                                context,
+                                onCameraTap: () {
+                                  Get.back();
+                                  controller.pickImageFromCamera(file: controller.licenseImage);
+                                },
+                                onGalleryTap: () {
+                                  Get.back();
+                                  controller.pickImageFromGallery(file: controller.licenseImage);
+                                },
+                              );
+                            },
+                            delay: 500,
+                          ).paddingTop(10.h);
+                        }
+                        return const SizedBox.shrink();
                       }),
-                      delay: 200,
-                    ),
 
-                    _divider(),
+                      20.h.height,
 
-                    _buildAnimatedTile(
-                      Obx(() {
-                        return GestureDetector(
-                          onTap: () => controller.imageType.value = 'passport',
-                          child: _buildTile(AppAssets.passportIcon, "Passport", AppAssets.tickIcon, isVerified: controller.imageType.value == 'passport'),
-                        );
-                      }),
-                      delay: 300,
-                    ),
-
-                    _divider(),
-
-                    _buildAnimatedTile(
-                      Obx(() {
-                        return GestureDetector(
-                          onTap: () => controller.imageType.value = 'license',
-                          child: _buildTile(AppAssets.licenseIcon, "License", AppAssets.tickIcon, isVerified: controller.imageType.value == 'license'),
-                        );
-                      }),
-                      delay: 400,
-                    ),
-
-                    _divider(),
-
-                    /// Conditional Upload Sections
-                    Obx(() {
-                      if (controller.imageType.value == 'national') {
-                        return Column(
-                          children: [
-                            _animateUploadSection(
-                              controller.nationalIdFront.value,
-                              "Front Side",
-                              () => controller.nationalIdFront.value = null,
-                              onPick: () {
-                                Utils.showPickImageOptionsDialog(
-                                  context,
-                                  onCameraTap: () {
-                                    Get.back();
-                                    controller.pickImageFromCamera(file: controller.nationalIdFront);
-                                  },
-                                  onGalleryTap: () {
-                                    Get.back();
-                                    controller.pickImageFromGallery(file: controller.nationalIdFront);
-                                  },
-                                );
-                              },
-                              delay: 500,
-                            ),
-                            _animateUploadSection(
-                              controller.nationalIdBack.value,
-                              "Back Side",
-                              () => controller.nationalIdBack.value = null,
-                              onPick: () {
-                                Utils.showPickImageOptionsDialog(
-                                  context,
-                                  onCameraTap: () {
-                                    Get.back();
-                                    controller.pickImageFromCamera(file: controller.nationalIdBack);
-                                  },
-                                  onGalleryTap: () {
-                                    Get.back();
-                                    controller.pickImageFromGallery(file: controller.nationalIdBack);
-                                  },
-                                );
-                              },
-                              delay: 600,
-                            ),
-                          ],
-                        ).paddingTop(10.h);
-                      } else if (controller.imageType.value == 'passport') {
-                        return _animateUploadSection(
-                          controller.passportImage.value,
-                          "Passport",
-                          () => controller.passportImage.value = null,
-                          onPick: () {
-                            Utils.showPickImageOptionsDialog(
-                              context,
-                              onCameraTap: () {
-                                Get.back();
-                                controller.pickImageFromCamera(file: controller.passportImage);
-                              },
-                              onGalleryTap: () {
-                                Get.back();
-                                controller.pickImageFromGallery(file: controller.passportImage);
-                              },
-                            );
+                      /// Next Button
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 40.w, vertical: 20.h),
+                        child: AppCustomButton(
+                          title: "Next",
+                          bgColor: AppColors.secondary,
+                          onPressed: () {
+                            Get.toNamed(AppRoutes.selfieVerificationView);
                           },
-                          delay: 500,
-                        ).paddingTop(10.h);
-                      } else if (controller.imageType.value == 'license') {
-                        return _animateUploadSection(
-                          controller.licenseImage.value,
-                          "License",
-                          () => controller.licenseImage.value = null,
-                          onPick: () {
-                            Utils.showPickImageOptionsDialog(
-                              context,
-                              onCameraTap: () {
-                                Get.back();
-                                controller.pickImageFromCamera(file: controller.licenseImage);
-                              },
-                              onGalleryTap: () {
-                                Get.back();
-                                controller.pickImageFromGallery(file: controller.licenseImage);
-                              },
-                            );
-                          },
-                          delay: 500,
-                        ).paddingTop(10.h);
-                      }
-                      return const SizedBox.shrink();
-                    }),
-
-                    20.h.height,
-
-                    /// Next Button
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 40.w, vertical: 20.h),
-                      child: AppCustomButton(
-                        title: "Next",
-                        bgColor: AppColors.secondary,
-                        onPressed: () {
-                          Get.toNamed(AppRoutes.selfieVerificationView);
-                        },
-                      ).animate().fadeIn(duration: 700.ms).scale(begin: const Offset(0.9, 0.9)),
-                    ),
-                  ],
-                ).paddingSymmetric(horizontal: 10.w, vertical: 10.h),
+                        ).animate().fadeIn(duration: 700.ms).scale(begin: const Offset(0.9, 0.9)),
+                      ),
+                    ],
+                  ).paddingSymmetric(horizontal: 10.w),
+                ),
               ),
             ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.2, curve: Curves.easeOut),
           ),

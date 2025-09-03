@@ -38,7 +38,7 @@ class _NeedyRequestDetailViewState extends State<NeedyRequestDetailView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: CustomAppBar(title: 'Details', backgroundColor: Colors.transparent),
+      appBar: CustomAppBar(title: status == 'history' ? 'History Details' : 'Details', backgroundColor: Colors.transparent),
       body: SafeArea(
         child: SingleChildScrollView(
           physics: BouncingScrollPhysics(),

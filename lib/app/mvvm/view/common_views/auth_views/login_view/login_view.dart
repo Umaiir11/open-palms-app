@@ -109,11 +109,10 @@ class _LoginViewState extends State<LoginView> {
                         controller: authController.passwordController,
                         obscureText: authController.isVisible.value,
                         isRequired: false,
-                        suffixIcon: IconButton(
-                          icon: Icon(authController.isVisible.value ? Icons.visibility_off : Icons.visibility),
-                          color: AppColors.toggleColor,
-                          onPressed: authController.togglePassword,
-                        ),
+                        suffixIcon: GestureDetector(
+                          onTap: authController.togglePassword,
+                          child: Icon(authController.isVisible.value ? Icons.visibility_off : Icons.visibility, size: 20.sp, color: AppColors.textLightBlack,),
+                        ).paddingLeft(25.w),
                       ),
                     ).animate(delay: 600.ms).fadeIn(duration: 500.ms).slideY(begin: 0.2, curve: Curves.easeOut),
 

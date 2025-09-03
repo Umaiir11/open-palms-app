@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:open_palms/app/config/app_assets.dart';
+import 'package:open_palms/app/config/padding_extensions.dart';
 import 'package:open_palms/app/customWidgets/app_custom_button.dart';
 import 'package:open_palms/app/customWidgets/app_custom_field.dart';
 import 'package:open_palms/app/customWidgets/sizedbox_extension.dart';
@@ -88,11 +89,10 @@ class _SetPasswordViewState extends State<SetPasswordView> {
                         controller: authController.passwordController,
                         obscureText: authController.isVisible.value,
                         isRequired: false,
-                        suffixIcon: IconButton(
-                          icon: Icon(authController.isVisible.value ? Icons.visibility_off : Icons.visibility),
-                          color: AppColors.toggleColor,
-                          onPressed: authController.togglePassword,
-                        ),
+                        suffixIcon: GestureDetector(
+                          onTap: authController.togglePassword,
+                          child: Icon(authController.isVisible.value ? Icons.visibility_off : Icons.visibility, size: 20.sp, color: AppColors.textLightBlack),
+                        ).paddingLeft(25.w),
                       ).animate().fadeIn(duration: 500.ms, delay: 400.ms).slideY(begin: 0.2),
                     ),
 
@@ -106,11 +106,14 @@ class _SetPasswordViewState extends State<SetPasswordView> {
                         controller: authController.confirmPasswordController,
                         obscureText: authController.isConfirmPasswordVisible.value,
                         isRequired: false,
-                        suffixIcon: IconButton(
-                          icon: Icon(authController.isConfirmPasswordVisible.value ? Icons.visibility_off : Icons.visibility),
-                          color: AppColors.toggleColor,
-                          onPressed: authController.toggleConfirmPassword,
-                        ),
+                        suffixIcon: GestureDetector(
+                          onTap: authController.toggleConfirmPassword,
+                          child: Icon(
+                            authController.isConfirmPasswordVisible.value ? Icons.visibility_off : Icons.visibility,
+                            size: 20.sp,
+                            color: AppColors.textLightBlack,
+                          ),
+                        ).paddingLeft(25.w),
                       ).animate().fadeIn(duration: 500.ms, delay: 500.ms).slideY(begin: 0.2),
                     ),
 

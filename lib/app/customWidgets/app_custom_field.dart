@@ -196,7 +196,7 @@ class AppCustomField extends StatelessWidget {
             border: UnderlineInputBorder(borderSide: BorderSide(color: enabledBorderColor ?? AppColors.textLightBlack.withOpacity(0.4))),
             prefixIconColor: prefixIconColor,
             suffixIconColor: suffixIconColor,
-            contentPadding: contentPadding ?? EdgeInsets.symmetric(horizontal: isSecondField ?? false ? 15.w : 0.w, vertical: 15.h),
+            contentPadding: contentPadding ?? EdgeInsets.symmetric(horizontal: isSecondField ?? false ? 15.w : 0, vertical: 15.h),
             focusedBorder: isSecondField == true
                 ? OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8.sp),
