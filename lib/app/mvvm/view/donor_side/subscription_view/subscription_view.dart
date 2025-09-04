@@ -32,7 +32,6 @@ class _SubscriptionViewState extends State<SubscriptionView> {
               iconPath: AppAssets.bronzeBadge,
               title: "Bronze (\$1-\$20)",
               fee: "20% fee",
-              isSelected: selectedPlan == 'Bronze',
               onSelect: () {
                 setState(() {
                   selectedPlan = 'Bronze';
@@ -44,7 +43,6 @@ class _SubscriptionViewState extends State<SubscriptionView> {
               iconPath: AppAssets.silverBadge,
               title: "Silver (\$21-\$100)",
               fee: "15% fee",
-              isSelected: selectedPlan == 'Silver',
               onSelect: () {
                 setState(() {
                   selectedPlan = 'Silver';
@@ -56,7 +54,6 @@ class _SubscriptionViewState extends State<SubscriptionView> {
               iconPath: AppAssets.goldBadge,
               title: "Gold (\$101-\$500)",
               fee: "12% fee",
-              isSelected: selectedPlan == 'Gold',
               onSelect: () {
                 setState(() {
                   selectedPlan = 'Gold';
@@ -68,7 +65,6 @@ class _SubscriptionViewState extends State<SubscriptionView> {
               iconPath: AppAssets.platinumBadge,
               title: "Platinum (\$501+)",
               fee: "10% fee",
-              isSelected: selectedPlan == 'Gold',
               onSelect: () {
                 setState(() {
                   selectedPlan = 'Gold';
@@ -86,20 +82,19 @@ class SubscriptionCard extends StatelessWidget {
   final String iconPath;
   final String title;
   final String fee;
-  final bool isSelected;
   final VoidCallback onSelect;
 
-  const SubscriptionCard({super.key, required this.iconPath, required this.title, required this.fee, this.isSelected = false, required this.onSelect});
+  const SubscriptionCard({super.key, required this.iconPath, required this.title, required this.fee, required this.onSelect});
 
   @override
   Widget build(BuildContext context) {
     return Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12.r),
-        side: isSelected ? BorderSide(color: AppColors.primary, width: 2.w) : BorderSide.none,
+        side:  BorderSide.none,
       ),
-      elevation: isSelected ? 4 : 0,
-      color: isSelected ? AppColors.primary.withOpacity(0.1) : Colors.white,
+      elevation: 0,
+      color:  Colors.white,
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 16.w),
         child: Column(
@@ -108,19 +103,19 @@ class SubscriptionCard extends StatelessWidget {
             10.h.height,
             Text(
               title,
-              style: AppTextStyles.customText24(color: isSelected ? AppColors.primary : AppColors.black, fontWeight: FontWeight.w700, height: 1),
+              style: AppTextStyles.customText24(color:  AppColors.black, fontWeight: FontWeight.w700, height: 1),
               textAlign: TextAlign.center,
             ),
             6.h.height,
             Text(
               fee,
-              style: AppTextStyles.customText22(color: isSelected ? AppColors.primary : AppColors.black, fontWeight: FontWeight.w500),
+              style: AppTextStyles.customText22(color:  AppColors.black, fontWeight: FontWeight.w500),
             ),
             16.h.height,
             Padding(
               padding: const EdgeInsets.only(left: 30.0, right: 30),
               child: AppCustomButton(
-                title: isSelected ? "Selected" : "Choose Plan",
+                title: "Choose Plan",
                 onPressed: onSelect,
                 bgColor: AppColors.secondary,
                 suffixIcon: SvgPicture.asset(AppAssets.rightArrow),

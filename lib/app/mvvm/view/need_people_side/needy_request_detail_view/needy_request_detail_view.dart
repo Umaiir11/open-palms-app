@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -38,7 +39,7 @@ class _NeedyRequestDetailViewState extends State<NeedyRequestDetailView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: CustomAppBar(title: status == 'history' ? 'History Details' : 'Details', backgroundColor: Colors.transparent),
+      appBar: CustomAppBar(title: status == 'history' ? 'Request Details' : 'Details', backgroundColor: Colors.transparent),
       body: SafeArea(
         child: SingleChildScrollView(
           physics: BouncingScrollPhysics(),

@@ -30,7 +30,7 @@ class _NotificationsViewState extends State<NotificationsView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(title: "Notification", backgroundColor: Colors.transparent),
-      backgroundColor: AppColors.white,
+      backgroundColor: Color(0xFFFBFBFB),
       body: ListView.builder(
         physics: BouncingScrollPhysics(),
         padding: EdgeInsets.zero,
@@ -58,23 +58,62 @@ class NotificationCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        SvgPicture.asset(AppAssets.checkIcon),
-        12.w.width,
-        Expanded(
-          child: Text(
-            notification.message,
-            style: AppTextStyles.customTextFigtree(color: AppColors.textSecondary, fontWeight: FontWeight.w400, height: 1.4, fontSize: 14),
+    return Container(
+      margin: EdgeInsets.only(bottom: 12.h),
+      decoration: BoxDecoration(
+        color: AppColors.white,
+        borderRadius: BorderRadius.circular(12.r),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.02),
+            blurRadius: 6,
+            offset: Offset(0, 3),
           ),
+        ],
+      ),
+      child: Padding(
+        padding: EdgeInsets.fromLTRB(14.w, 6.h, 14.w, 14.h),
+        child: Stack(
+          children: [
+            // Main row (icon + message)
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SvgPicture.asset(
+                  AppAssets.checkIcon,
+                ),
+                12.w.width,
+                Expanded(
+                  child: Text(
+                    notification.message,
+                    style: AppTextStyles.customTextFigtree(
+                      color: AppColors.textSecondary,
+                      fontWeight: FontWeight.w400,
+                      height: 1.4,
+                      fontSize: 14,
+                    ),
+                  ).paddingRight(48.w),
+                ),
+              ],
+            ).paddingTop(8.h),
+
+            // Date in top-right corner
+            Positioned(
+              right: 0,
+              top: 0,
+              child: Text(
+                notification.date,
+                style: AppTextStyles.customTextFigtree(
+                  color: AppColors.textGreyColor,
+                  fontWeight: FontWeight.w400,
+                  height: 1.4,
+                  fontSize: 10,
+                ),
+              ),
+            ),
+          ],
         ),
-        10.w.width,
-        Text(
-          notification.date,
-          style: AppTextStyles.customTextFigtree(color: AppColors.textGreyColor, fontWeight: FontWeight.w400, height: 1.4, fontSize: 10),
-        ),
-      ],
-    ).paddingBottom(15.h).paddingHorizontal(10.w);
+      ),
+    );
   }
 }

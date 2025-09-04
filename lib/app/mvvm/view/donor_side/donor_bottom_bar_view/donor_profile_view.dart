@@ -227,7 +227,8 @@ class _DonorProfileViewState extends State<DonorProfileView> {
             scale: 0.7,
             child: Switch(
               value: notificationEnabled,
-              activeColor: AppColors.primary,
+              activeColor: AppColors.white,
+              activeTrackColor: AppColors.primary,
               inactiveThumbColor: AppColors.secondary,
               inactiveTrackColor: Color(0xFFF3F3F7),
               trackOutlineColor: WidgetStateProperty.all(Colors.transparent),
@@ -241,7 +242,13 @@ class _DonorProfileViewState extends State<DonorProfileView> {
         ),
         onTap: () {},
       ),
+
+      if(GlobalVariables.userType == UserType.donor)
+        Divider(height: 1, thickness: 1, color: AppColors.textLightBlack.withOpacity(0.1)).paddingHorizontal(4.w).paddingVertical(6.h),
+
+
       if (GlobalVariables.userType == UserType.donor)
+
         _settingsTile(
           leading: SvgPicture.asset(AppAssets.subscriptionIcon, height: 43.h, width: 43.w),
           title: "Subscription",
@@ -250,6 +257,7 @@ class _DonorProfileViewState extends State<DonorProfileView> {
             Get.toNamed(AppRoutes.subscriptionView);
           },
         ),
+      Divider(height: 1, thickness: 1, color: AppColors.textLightBlack.withOpacity(0.1)).paddingHorizontal(4.w).paddingVertical(6.h),
       _settingsTile(
         leading: Image.asset(AppAssets.aboutUsIcon, height: 43.h, width: 43.w),
         title: "About Us",
@@ -258,6 +266,8 @@ class _DonorProfileViewState extends State<DonorProfileView> {
           Get.toNamed(AppRoutes.aboutUsView);
         },
       ),
+      Divider(height: 1, thickness: 1, color: AppColors.textLightBlack.withOpacity(0.1)).paddingHorizontal(4.w).paddingVertical(6.h),
+
       _settingsTile(
         leading: Image.asset(AppAssets.privacyIcon, height: 43.h, width: 43.w),
         title: "Privacy Policy",
@@ -266,6 +276,8 @@ class _DonorProfileViewState extends State<DonorProfileView> {
           Get.toNamed(AppRoutes.privacyPolicyView);
         },
       ),
+      Divider(height: 1, thickness: 1, color: AppColors.textLightBlack.withOpacity(0.1)).paddingHorizontal(4.w).paddingVertical(6.h),
+
       _settingsTile(
         leading: Image.asset(AppAssets.signOutIcon, height: 43.h, width: 43.w),
         title: "Sign out",
@@ -274,6 +286,8 @@ class _DonorProfileViewState extends State<DonorProfileView> {
           Utils.showBottomSheet(context: context, child: LogoutSheet());
         },
       ),
+      Divider(height: 1, thickness: 1, color: AppColors.textLightBlack.withOpacity(0.1)).paddingHorizontal(4.w).paddingVertical(6.h),
+
       _settingsTile(
         leading: Image.asset(AppAssets.deleteIcon, height: 43.h, width: 43.w),
         title: "Delete account",
